@@ -17,12 +17,12 @@ Command-Simplify: Simplify
 File-Copyright: /copyright.txt
 File-QuickRef: /quickref.txt
 Label-Name: Name
-MIDlet-1: meditor, meditor.png, jscl.editor.micro.EditorMIDlet
-MIDlet-Jar-Size: 222491
+MIDlet-1: meditor, /icons/meditor.png, jscl.editor.micro.EditorMIDlet
+MIDlet-Jar-Size: 235134
 MIDlet-Jar-URL: meditor.jar
 MIDlet-Name: meditor
 MIDlet-Vendor: Sun Microsystems
-MIDlet-Version: 1.0
+MIDlet-Version: 0.80
 Name-QuickRef: quickref
 Name-Untitled: untitled
 Title-Copyright: Copyright

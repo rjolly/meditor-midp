@@ -12,6 +12,7 @@ Vectors and matrices
 
 Expressions
 a+b, a-b, a*b, a/b, a**b, a!
+div(a,b), mod(a,b)
 a*(b+c)
 
 Trigonometric functions
@@ -58,6 +59,9 @@ Matrix product
 matrix({{a11,...,a1k},...,{an1,...,ank}},{{b11,...,b1p},...,{bk1,...,bkp}})
 matrix({{a11,...,a1k},...,{an1,...,ank}},{b1,...,bk})
 matrix({a1,...,ak},{{b11,...,b1p},...,{bk1,...,bkp}})
+
+Matrix inverse
+matinv({{a11,...,a1n},...,{an1,...,ann}})
 
 Tensor product
 tensor({{a11,...,a1p},...,{an1,...,anp}},{{b11,...,b1q},...,{bm1,...,bmq}})
