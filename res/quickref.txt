@@ -82,7 +82,6 @@ solve(p(x),x,subscript_opt)
 
 Variable substitution
 subst(f(x),x,value)
-subst(f(x1,...,xn),{x1,...,xn},{v1,...,vn})
 
 Limit
 lim(f(x),x,value,direction_opt)
