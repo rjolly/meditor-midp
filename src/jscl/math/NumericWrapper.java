@@ -219,11 +219,11 @@ public final class NumericWrapper extends Arithmetic {
 		return null;
 	}
 
-	public int compareTo(Object comparable) {
-		if(comparable instanceof NumericWrapper) {
-			return content.compareTo(((NumericWrapper)comparable).content);
+	public int compareTo(Arithmetic arithmetic) {
+		if(arithmetic instanceof NumericWrapper) {
+			return content.compareTo(((NumericWrapper)arithmetic).content);
 		} else {
-			return compareTo(valueof((Arithmetic)comparable));
+			return compareTo(valueof(arithmetic));
 		}
 	}
 
