@@ -18,7 +18,7 @@ File-Copyright: /copyright.txt
 File-QuickRef: /quickref.txt
 Label-Name: Name
 MIDlet-1: meditor, meditor.png, jscl.editor.micro.EditorMIDlet
-MIDlet-Jar-Size: 222355
+MIDlet-Jar-Size: 222491
 MIDlet-Jar-URL: meditor.jar
 MIDlet-Name: meditor
 MIDlet-Vendor: Sun Microsystems
