@@ -79,5 +79,5 @@ prod(a[i],i,n1,n2)
 
 Groebner basis computation
 groebner({p1(x1,...,xm),...,pn(x1,...,xm)},{x1,...,xm},ordering_opt,modulo_opt)
-ordering : 0=lexicographic, 1=total degree lexicographic, 2=degree reverse lexicographic
+ordering : lex=lexicographic, tdl=total degree lexicographic, drl=degree reverse lexicographic, elim(k)=kth-elimination
 modulo : positive integer
