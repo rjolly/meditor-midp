@@ -41,7 +41,7 @@ d(f(x),x,value_opt,order_opt)
 Integration
 integral(f(x),x,a,b), integral(f(x),x)
 
-Differential geometry
+Vector algebra
 grad(f(x1,...,xn),{x1,...,xn})
 divg({f1(x1,...,xn),...,fn(x1,...,xn)},{x1,...,xn})
 curl({fx(x,y,z),fy(x,y,z),fz(x,y,z)},{x,y,z})
@@ -71,6 +71,7 @@ subst(f(x),x,value)
 
 Limit
 lim(f(x),x,value,direction_opt)
+direction : <0, 0, >0
 
 Sum, product
 sum(a[i],i,n1,n2)
