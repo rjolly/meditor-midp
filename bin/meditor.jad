@@ -18,11 +18,11 @@ File-Copyright: /copyright.txt
 File-QuickRef: /quickref.txt
 Label-Name: Name
 MIDlet-1: meditor, /icons/meditor.png, jscl.editor.micro.EditorMIDlet
-MIDlet-Jar-Size: 263182
+MIDlet-Jar-Size: 265064
 MIDlet-Jar-URL: meditor.jar
 MIDlet-Name: meditor
 MIDlet-Vendor: Raphael Jolly
-MIDlet-Version: 1.0
+MIDlet-Version: 1.0_01
 Name-QuickRef: quickref
 Name-Untitled: untitled
 Title-Copyright: Copyright
