@@ -63,8 +63,8 @@ tran({{a11,...,a1p},...,{an1,...,anp}})
 trace({{a11,...,a1n},...,{an1,...,ann}})
 det({{a11,...,a1n},...,{an1,...,ann}})
 
-Polynomial coefficients
-coef(p(x),x)
+Polynomial solving
+solve(p(x),x,subscript_opt)
 
 Variable substitution
 subst(f(x),x,value)

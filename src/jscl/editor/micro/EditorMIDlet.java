@@ -319,6 +319,7 @@ public class EditorMIDlet extends MIDlet implements CommandListener, RecordFilte
 						Alert alert=new Alert(c.getLabel(),ex.toString(),null,AlertType.ERROR);
 						alert.setTimeout(Alert.FOREVER);
 						display.setCurrent(alert,box);
+						Debug.reset();
 					}
 				}
 			}.start();
