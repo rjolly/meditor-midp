@@ -1,0 +1,28 @@
+Alert-Changes: Changes have not been saved. Proceed anyway ?
+Alert-NoMark: Please mark the beginning of your expression.
+Command-About: About
+Command-Cancel: Cancel
+Command-Delete: Delete
+Command-Elementary: Elementary
+Command-Exit: Exit
+Command-Expand: Expand
+Command-Factorize: Factorize
+Command-Mark: Mark
+Command-New: New
+Command-Ok: Ok
+Command-Open: Open
+Command-Save: Save
+Command-SaveAs: Save As
+Command-Simplify: Simplify
+File-Copyright: /copyright.txt
+File-QuickRef: /quickref.txt
+Label-Name: Name
+MIDlet-1: meditor, meditor.png, jscl.editor.micro.EditorMIDlet
+MIDlet-Jar-Size: 199614
+MIDlet-Jar-URL: meditor.jar
+MIDlet-Name: meditor
+MIDlet-Vendor: Sun Microsystems
+MIDlet-Version: 1.0
+Name-QuickRef: quickref
+Name-Untitled: untitled
+Title-Copyright: Copyright
