@@ -100,6 +100,12 @@ Sum, product
 sum(a[i],i,n1,n2)
 prod(a[i],i,n1,n2)
 
+Number theory
+modpow(a,exponent,modulo)
+modinv(a,modulo)
+eulerphi(a)
+primitiveroots(a)
+
 Groebner basis computation
 groebner({p1(x1,...,xm),...,pn(x1,...,xm)},{x1,...,xm},ordering_opt,modulo_opt)
 ordering : lex=lexicographic, tdl=total degree lexicographic, drl=degree reverse lexicographic, elim(k)=kth-elimination
