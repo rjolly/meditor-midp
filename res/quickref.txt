@@ -32,6 +32,9 @@ abs(x), sgn(x)
 Square root
 sqrt(x)
 
+Conjugate
+conjugate(x)
+
 Implicit roots
 root[i](a0,...,an)
 

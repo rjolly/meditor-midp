@@ -167,6 +167,10 @@ public final class NumericWrapper extends Arithmetic {
 		return null;
 	}
 
+	public Arithmetic conjugate() {
+		return null;
+	}
+
 	public Arithmetic acos() {
 		return null;
 	}
