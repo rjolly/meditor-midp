@@ -3,7 +3,7 @@ package jscl.math;
 import jscl.math.function.*;
 import jscl.text.*;
 
-public final class NumericWrapper extends Arithmetic {
+public final class NumericWrapper extends Generic {
 	public static final Parser parser=DoubleParser.parser;
 	final String content;
 
@@ -31,35 +31,35 @@ public final class NumericWrapper extends Arithmetic {
 		content=str;
 	}
 
-	public Arithmetic add(Arithmetic arithmetic) {
+	public Generic add(Generic generic) {
 		return null;
 	}
 
-	public Arithmetic subtract(Arithmetic arithmetic) {
+	public Generic subtract(Generic generic) {
 		return null;
 	}
 
-	public Arithmetic multiply(Arithmetic arithmetic) {
+	public Generic multiply(Generic generic) {
 		return null;
 	}
 
-	public Arithmetic divide(Arithmetic arithmetic) throws ArithmeticException {
+	public Generic divide(Generic generic) throws ArithmeticException {
 		return null;
 	}
 
-	public Arithmetic gcd(Arithmetic arithmetic) {
+	public Generic gcd(Generic generic) {
 		return null;
 	}
 
-	public Arithmetic gcd() {
+	public Generic gcd() {
 		return null;
 	}
 
-	public Arithmetic abs() {
+	public Generic abs() {
 		return null;
 	}
 
-	public Arithmetic negate() {
+	public Generic negate() {
 		return null;
 	}
 
@@ -71,47 +71,47 @@ public final class NumericWrapper extends Arithmetic {
 		return 0;
 	}
 
-	public Arithmetic antiderivative(Variable variable) throws NotIntegrableException {
+	public Generic antiderivative(Variable variable) throws NotIntegrableException {
 		return null;
 	}
 
-	public Arithmetic derivative(Variable variable) {
+	public Generic derivative(Variable variable) {
 		return null;
 	}
 
-	public Arithmetic substitute(Variable variable, Arithmetic arithmetic) {
+	public Generic substitute(Variable variable, Generic generic) {
 		return null;
 	}
 
-	public Arithmetic expand() {
+	public Generic expand() {
 		return null;
 	}
 
-	public Arithmetic factorize() {
+	public Generic factorize() {
 		return null;
 	}
 
-	public Arithmetic elementary() {
+	public Generic elementary() {
 		return null;
 	}
 
-	public Arithmetic simplify() {
+	public Generic simplify() {
 		return null;
 	}
 
-	public Arithmetic numeric() {
+	public Generic numeric() {
 		return this;
 	}
 
-	public Arithmetic valueof(Arithmetic arithmetic) {
+	public Generic valueof(Generic generic) {
 		throw new ArithmeticException();
 	}
 
-	public Arithmetic[] sumValue() {
+	public Generic[] sumValue() {
 		return null;
 	}
 
-	public Arithmetic[] productValue() throws NotProductException {
+	public Generic[] productValue() throws NotProductException {
 		return null;
 	}
 
@@ -143,87 +143,87 @@ public final class NumericWrapper extends Arithmetic {
 		return true;
 	}
 
-	public Arithmetic sgn() {
+	public Generic sgn() {
 		return null;
 	}
 
-	public Arithmetic log() {
+	public Generic log() {
 		return null;
 	}
 
-	public Arithmetic exp() {
+	public Generic exp() {
 		return null;
 	}
 
-	public Arithmetic pow(Arithmetic arithmetic) {
+	public Generic pow(Generic generic) {
 		return null;
 	}
 
-	public Arithmetic sqrt() {
+	public Generic sqrt() {
 		return null;
 	}
 
-	public static Arithmetic root(int subscript, Arithmetic parameter[]) {
+	public static Generic root(int subscript, Generic parameter[]) {
 		return null;
 	}
 
-	public Arithmetic conjugate() {
+	public Generic conjugate() {
 		return null;
 	}
 
-	public Arithmetic acos() {
+	public Generic acos() {
 		return null;
 	}
 
-	public Arithmetic asin() {
+	public Generic asin() {
 		return null;
 	}
 
-	public Arithmetic atan() {
+	public Generic atan() {
 		return null;
 	}
 
-	public Arithmetic cos() {
+	public Generic cos() {
 		return null;
 	}
 
-	public Arithmetic sin() {
+	public Generic sin() {
 		return null;
 	}
 
-	public Arithmetic tan() {
+	public Generic tan() {
 		return null;
 	}
 
-	public Arithmetic acosh() {
+	public Generic acosh() {
 		return null;
 	}
 
-	public Arithmetic asinh() {
+	public Generic asinh() {
 		return null;
 	}
 
-	public Arithmetic atanh() {
+	public Generic atanh() {
 		return null;
 	}
 
-	public Arithmetic cosh() {
+	public Generic cosh() {
 		return null;
 	}
 
-	public Arithmetic sinh() {
+	public Generic sinh() {
 		return null;
 	}
 
-	public Arithmetic tanh() {
+	public Generic tanh() {
 		return null;
 	}
 
-	public int compareTo(Arithmetic arithmetic) {
-		if(arithmetic instanceof NumericWrapper) {
-			return content.compareTo(((NumericWrapper)arithmetic).content);
+	public int compareTo(Generic generic) {
+		if(generic instanceof NumericWrapper) {
+			return content.compareTo(((NumericWrapper)generic).content);
 		} else {
-			return compareTo(valueof(arithmetic));
+			return compareTo(valueof(generic));
 		}
 	}
 
@@ -255,7 +255,7 @@ public final class NumericWrapper extends Arithmetic {
 		return buffer.toString();
 	}
 
-	protected Arithmetic newinstance() {
+	protected Generic newinstance() {
 		return null;
 	}
 }

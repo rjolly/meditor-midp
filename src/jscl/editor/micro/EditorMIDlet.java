@@ -309,8 +309,8 @@ public class EditorMIDlet extends MIDlet implements CommandListener, RecordFilte
 					try {
 						Object o[]=(Object[])Expression.userInput.parse(text,new int[1]);
 						boolean equal=((Boolean)o[1]).booleanValue();
-						Arithmetic in=(Arithmetic)o[0];
-						Arithmetic out=process(c,in);
+						Generic in=(Generic)o[0];
+						Generic out=process(c,in);
 						String s=equal?text+out.toString():out.toString();
 						box.delete(mark,n-mark);
 						box.insert(s,mark);
@@ -326,7 +326,7 @@ public class EditorMIDlet extends MIDlet implements CommandListener, RecordFilte
 		}
 	}
 
-	Arithmetic process(Command c, Arithmetic in) {
+	Generic process(Command c, Generic in) {
 		if (c == expandCommand) return in.expand();
 		else if (c == factorizeCommand) return in.factorize();
 		else if (c == elementaryCommand) return in.elementary();
