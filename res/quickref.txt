@@ -56,6 +56,10 @@ laplacian(f(x1,...,xn),{x1,...,xn})
 laplacian({f1(x1,...,xn),...,fm(x1,...,xn)},{x1,...,xn})
 jacobian({f1(x1,...,xn),...,fm(x1,...,xn)},{x1,...,xn})
 
+Geometric differential operator
+del({f1(x1,...,xn),...,fp(x1,...,xn)},{x1,...,xn})
+p=2^n, n=1...4
+
 Scalar and vector product
 {a1,...,an}*{b1,...,bn}
 vector({ax,ay,az},{bx,by,bz})
@@ -71,6 +75,10 @@ tensor({{a11,...,a1p},...,{an1,...,anp}},{{b11,...,b1q},...,{bm1,...,bmq}})
 Complex and quaternion product
 complex({a,b},{c,d})
 quaternion({a,b,c,d},{e,f,g,h})
+
+Geometric product
+geometric({a1,...,ap},{b1,...,bp})
+p=2^n, n=0...4
 
 Transposition, trace, determinant
 tran({{a11,...,a1p},...,{an1,...,anp}})
@@ -95,4 +103,4 @@ prod(a[i],i,n1,n2)
 Groebner basis computation
 groebner({p1(x1,...,xm),...,pn(x1,...,xm)},{x1,...,xm},ordering_opt,modulo_opt)
 ordering : lex=lexicographic, tdl=total degree lexicographic, drl=degree reverse lexicographic, elim(k)=kth-elimination
-modulo : positive integer
+modulo : prime integer
