@@ -1,5 +1,5 @@
     jscl-meditor : java symbolic computing library and mathematical editor
-    Copyright (C) 2000-2003  Raphael Jolly
+    Copyright (C) 2000-2004  Raphael Jolly
     Copyright (C) 2003       Elefterios Stamatogiannakis
 
     This library is free software; you can redistribute it and/or

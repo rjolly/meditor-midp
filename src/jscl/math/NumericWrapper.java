@@ -219,9 +219,13 @@ public final class NumericWrapper extends Generic {
 		return null;
 	}
 
+	public int compareTo(NumericWrapper wrapper) {
+		return content.compareTo(wrapper.content);
+	}
+
 	public int compareTo(Generic generic) {
 		if(generic instanceof NumericWrapper) {
-			return content.compareTo(((NumericWrapper)generic).content);
+			return compareTo((NumericWrapper)generic);
 		} else {
 			return compareTo(valueof(generic));
 		}
@@ -320,7 +324,7 @@ class FloatingPointLiteral extends Parser {
 			digits=true;
 		} catch (ParseException e) {}
 		try {
-			Point.parser.parse(str,pos);
+			DecimalPoint.parser.parse(str,pos);
 			buffer.append(".");
 			point=true;
 		} catch (ParseException e) {
@@ -351,10 +355,10 @@ class FloatingPointLiteral extends Parser {
 	}
 }
 
-class Point extends Parser {
-	public static final Parser parser=new Point();
+class DecimalPoint extends Parser {
+	public static final Parser parser=new DecimalPoint();
 
-	private Point() {}
+	private DecimalPoint() {}
 
 	public Object parse(String str, int pos[]) throws ParseException {
 		int pos0=pos[0];
