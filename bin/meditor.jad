@@ -18,11 +18,11 @@ File-Copyright: /copyright.txt
 File-QuickRef: /quickref.txt
 Label-Name: Name
 MIDlet-1: meditor, /icons/meditor.png, jscl.editor.micro.EditorMIDlet
-MIDlet-Jar-Size: 235134
+MIDlet-Jar-Size: 252776
 MIDlet-Jar-URL: meditor.jar
 MIDlet-Name: meditor
 MIDlet-Vendor: Sun Microsystems
-MIDlet-Version: 0.80
+MIDlet-Version: 0.98
 Name-QuickRef: quickref
 Name-Untitled: untitled
 Title-Copyright: Copyright
