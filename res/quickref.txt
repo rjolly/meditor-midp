@@ -19,8 +19,8 @@ sin(x), cos(x), tan(x)
 asin(x), acos(x), atan(x)
 
 Hyperbolic functions
-sh(x), ch(x), th(x)
-argsh(x), argch(x), argth(x)
+sinh(x), cosh(x), tanh(x)
+asinh(x), acosh(x), atanh(x)
 
 Logarithm and exponential
 log(x), exp(x)
