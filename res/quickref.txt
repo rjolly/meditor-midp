@@ -25,6 +25,9 @@ asinh(x), acosh(x), atanh(x)
 Logarithm and exponential
 log(x), exp(x)
 
+Absolute value, sign
+abs(x), sgn(x)
+
 Square root
 sqrt(x)
 
@@ -45,6 +48,7 @@ Vector algebra
 grad(f(x1,...,xn),{x1,...,xn})
 divg({f1(x1,...,xn),...,fn(x1,...,xn)},{x1,...,xn})
 curl({fx(x,y,z),fy(x,y,z),fz(x,y,z)},{x,y,z})
+jacobi({f1(x1,...,xm),...,fn(x1,...,xm)},{x1,...,xm})
 
 Scalar and  vector product
 {a1,...,an}*{b1,...,bn}
