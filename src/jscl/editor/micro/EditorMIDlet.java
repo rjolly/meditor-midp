@@ -307,11 +307,9 @@ public class EditorMIDlet extends MIDlet implements CommandListener, RecordFilte
 			new Thread() {
 				public void run() {
 					try {
-						Object o[]=(Object[])Expression.userInput.parse(text,new int[1]);
-						boolean equal=((Boolean)o[1]).booleanValue();
-						Generic in=(Generic)o[0];
+						Generic in=Expression.valueOf(text);
 						Generic out=process(c,in);
-						String s=equal?text+out.toString():out.toString();
+						String s=out.toString();
 						box.delete(mark,n-mark);
 						box.insert(s,mark);
 						marked=false;
