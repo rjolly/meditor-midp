@@ -1,5 +1,5 @@
 /*
- * @(#)Serializable.java	1.16 00/02/02
+ * @(#)mySerializable.myjava	1.16 00/02/02
  *
  * Copyright 1996-2000 Sun Microsystems, Inc. All Rights Reserved.
  * 
@@ -8,42 +8,42 @@
  * 
  */
 
-package java.io;
+package myjava.io;
 
 /**
  * Serializability of a class is enabled by the class implementing the
- * java.io.Serializable interface. Classes that do not implement this
+ * myjava.io.mySerializable interface. Classes that do not implement this
  * interface will not have any of their state serialized or
- * deserialized.  All subtypes of a serializable class are themselves
- * serializable.  The serialization interface has no methods or fields
- * and serves only to identify the semantics of being serializable. <p>
+ * deserialized.  All subtypes of a mySerializable class are themselves
+ * mySerializable.  The serialization interface has no methods or fields
+ * and serves only to identify the semantics of being mySerializable. <p>
  *
- * To allow subtypes of non-serializable classes to be serialized, the
+ * To allow subtypes of non-mySerializable classes to be serialized, the
  * subtype may assume responsibility for saving and restoring the
  * state of the supertype's public, protected, and (if accessible)
  * package fields.  The subtype may assume this responsibility only if
  * the class it extends has an accessible no-arg constructor to
  * initialize the class's state.  It is an error to declare a class
- * Serializable in this case.  The error will be detected at runtime. <p>
+ * mySerializable in this case.  The error will be detected at runtime. <p>
  *
- * During deserialization, the fields of non-serializable classes will
+ * During deserialization, the fields of non-mySerializable classes will
  * be initialized using the public or protected no-arg constructor of
  * the class.  A no-arg constructor must be accessible to the subclass
- * that is serializable.  The fields of serializable subclasses will
+ * that is mySerializable.  The fields of mySerializable subclasses will
  * be restored from the stream. <p>
  *
  * When traversing a graph, an object may be encountered that does not
- * support the Serializable interface. In this case the
+ * support the mySerializable interface. In this case the
  * NotSerializableException will be thrown and will identify the class
- * of the non-serializable object. <p>
+ * of the non-mySerializable object. <p>
  *
  * Classes that require special handling during the serialization and deserialization
  * process must implement special methods with these exact signatures: <p>
  *
  * <PRE>
- * private void writeObject(java.io.ObjectOutputStream out)
+ * private void writeObject(myjava.io.ObjectOutputStream out)
  *     throws IOException
- * private void readObject(java.io.ObjectInputStream in)
+ * private void readObject(myjava.io.ObjectInputStream in)
  *     throws IOException, ClassNotFoundException;
  * </PRE><p>
  *
@@ -69,7 +69,7 @@ package java.io;
  * ObjectOutputStream using the writeObject method or by using the
  * methods for primitive data types supported by DataOutput. <p>
  *
- * Serializable classes that need to designate an alternative object to be
+ * mySerializable classes that need to designate an alternative object to be
  * used when writing an object to the stream should implement this
  * special method with the exact signature: <p>
  *
@@ -81,7 +81,7 @@ package java.io;
  * exists and it would be accessible from a method defined within the
  * class of the object being serialized. Thus, the method can have private,
  * protected and package-private access. Subclass access to this method
- * follows java accessibility rules. <p>
+ * follows myjava accessibility rules. <p>
  *
  * Classes that need to designate a replacement when an instance of it
  * is read from the stream should implement this special method with the
@@ -96,12 +96,12 @@ package java.io;
  *
  * @author  unascribed
  * @version 1.16, 02/02/00
- * @see java.io.ObjectOutputStream
- * @see java.io.ObjectInputStream
- * @see java.io.ObjectOutput
- * @see java.io.ObjectInput
- * @see java.io.Externalizable
+ * @see myjava.io.ObjectOutputStream
+ * @see myjava.io.ObjectInputStream
+ * @see myjava.io.ObjectOutput
+ * @see myjava.io.ObjectInput
+ * @see myjava.io.Externalizable
  * @since   JDK1.1
  */
-public interface Serializable {
+public interface mySerializable {
 }

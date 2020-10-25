@@ -4,6 +4,7 @@ import javax.microedition.lcdui.*;
 import javax.microedition.midlet.*;
 import javax.microedition.rms.*;
 import java.io.*;
+import myjava.io.*;
 import jscl.math.*;
 
 public class EditorMIDlet extends MIDlet implements CommandListener, RecordFilter, RecordComparator {
@@ -224,7 +225,10 @@ public class EditorMIDlet extends MIDlet implements CommandListener, RecordFilte
 	public void commandAction(Command c, Displayable s) {
 		if (s == box) {
 			if (c == markCommand) {
-				mark=box.getCaretPosition();
+				//Did not work because the coursor always jumps to the end of the text
+				//when the menu is opend
+				//mark=box.getCaretPosition();
+				mark=0;
 				marked=true;
 			} else if (c == expandCommand || c == factorizeCommand || c == elementaryCommand || c == simplifyCommand) {
 				process(c);

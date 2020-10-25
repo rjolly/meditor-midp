@@ -1,5 +1,5 @@
 /*
- * @(#)SignedMutableBigInteger.java	1.6 00/02/02
+ * @(#)mySignedMutableBigInteger.myjava	1.6 00/02/02
  *
  * Copyright 1996-2000 Sun Microsystems, Inc. All Rights Reserved.
  * 
@@ -8,7 +8,7 @@
  * 
  */
 
-package java.math;
+package myjava.math;
 
 /**
  * A class used to represent multiprecision integers that makes efficient
@@ -24,42 +24,42 @@ package java.math;
  * Note that SignedMutableBigIntegers only support signed addition and
  * subtraction. All other operations occur as with MutableBigIntegers.
  * 
- * @see     BigInteger
+ * @see     myBigInteger
  * @version 1.6, 02/02/00
  * @author  Michael McCloskey
  * @since   1.3
  */
 
-class SignedMutableBigInteger extends MutableBigInteger {
+class mySignedMutableBigInteger extends myMutableBigInteger {
 
    /**
-     * The sign of this MutableBigInteger.
+     * The sign of this myMutableBigInteger.
      */
     int sign = 1;
 
     // Constructors
 
     /**
-     * The default constructor. An empty MutableBigInteger is created with
+     * The default constructor. An empty myMutableBigInteger is created with
      * a one word capacity.
      */
-    SignedMutableBigInteger() {
+    mySignedMutableBigInteger() {
         super();
     }
 
     /**
-     * Construct a new MutableBigInteger with a magnitude specified by
+     * Construct a new myMutableBigInteger with a magnitude specified by
      * the int val.
      */
-    SignedMutableBigInteger(int val) {
+    mySignedMutableBigInteger(int val) {
         super(val);
     }
 
     /**
-     * Construct a new MutableBigInteger with a magnitude equal to the
-     * specified MutableBigInteger.
+     * Construct a new myMutableBigInteger with a magnitude equal to the
+     * specified myMutableBigInteger.
      */
-    SignedMutableBigInteger(MutableBigInteger val) {
+    mySignedMutableBigInteger(myMutableBigInteger val) {
         super(val);
     }
 
@@ -68,7 +68,7 @@ class SignedMutableBigInteger extends MutableBigInteger {
    /**
      * Signed addition built upon unsigned add and subtract.
      */
-    void signedAdd(SignedMutableBigInteger addend) {
+    void signedAdd(mySignedMutableBigInteger addend) {
         if (sign == addend.sign)
             add(addend);
         else
@@ -79,7 +79,7 @@ class SignedMutableBigInteger extends MutableBigInteger {
    /**
      * Signed addition built upon unsigned add and subtract.
      */
-    void signedAdd(MutableBigInteger addend) {
+    void signedAdd(myMutableBigInteger addend) {
         if (sign == 1)
             add(addend);
         else
@@ -90,7 +90,7 @@ class SignedMutableBigInteger extends MutableBigInteger {
    /**
      * Signed subtraction built upon unsigned add and subtract.
      */
-    void signedSubtract(SignedMutableBigInteger addend) {
+    void signedSubtract(mySignedMutableBigInteger addend) {
         if (sign == addend.sign)
             sign = sign * subtract(addend);
         else
@@ -101,7 +101,7 @@ class SignedMutableBigInteger extends MutableBigInteger {
    /**
      * Signed subtraction built upon unsigned add and subtract.
      */
-    void signedSubtract(MutableBigInteger addend) {
+    void signedSubtract(myMutableBigInteger addend) {
         if (sign == 1)
             sign = sign * subtract(addend);
         else
@@ -111,11 +111,11 @@ class SignedMutableBigInteger extends MutableBigInteger {
     }
 
     /**
-     * Print out the first intLen ints of this MutableBigInteger's value
+     * Print out the first intLen ints of this myMutableBigInteger's value
      * array starting at offset.
      */
     public String toString() {
-        BigInteger b = new BigInteger(this, sign);
+        myBigInteger b = new myBigInteger(this, sign);
         return
             b.toString();
     }

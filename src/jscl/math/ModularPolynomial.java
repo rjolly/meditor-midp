@@ -1,24 +1,24 @@
 package jscl.math;
 
-import java.util.*;
-import java.math.*;
+import myjava.util.*;
+import myjava.math.*;
 import jscl.text.*;
 
 class ModularPolynomial extends MultivariatePolynomial {
 	final int modulo;
 
-	ModularPolynomial(Variable unknown[], Comparator ordering, int modulo) {
+	ModularPolynomial(Variable unknown[], myComparator ordering, int modulo) {
 		super(unknown,ordering);
 		this.modulo=modulo;
-		mod=BigInteger.valueOf(modulo);
+		mod=myBigInteger.valueOf(modulo);
 	}
 
 	public Polynomial add(Polynomial polynomial) {
 		ModularPolynomial p=(ModularPolynomial)valueof(this);
 		ModularPolynomial p2=(ModularPolynomial)polynomial;
-		Iterator it=p2.content.entrySet().iterator();
+		myIterator it=p2.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				(Monomial)e.getKey(),
 				((Integer)e.getValue()).intValue()
@@ -31,9 +31,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 	public Polynomial subtract(Polynomial polynomial) {
 		ModularPolynomial p=(ModularPolynomial)valueof(this);
 		ModularPolynomial p2=(ModularPolynomial)polynomial;
-		Iterator it=p2.content.entrySet().iterator();
+		myIterator it=p2.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			int c=((Integer)e.getValue()).intValue();
 			p.put(
 				(Monomial)e.getKey(),
@@ -47,14 +47,14 @@ class ModularPolynomial extends MultivariatePolynomial {
 	public Polynomial multiply(Polynomial polynomial) {
 		ModularPolynomial p=(ModularPolynomial)newinstance();
 		ModularPolynomial p2=(ModularPolynomial)polynomial;
-		Iterator it2=p2.content.entrySet().iterator();
+		myIterator it2=p2.content.entrySet().myIterator();
 		while(it2.hasNext()) {
-			Map.Entry e2=(Map.Entry)it2.next();
+			myMap.Entry e2=(myMap.Entry)it2.next();
 			Monomial m=(Monomial)e2.getKey();
 			int a=((Integer)e2.getValue()).intValue();
-			Iterator it=content.entrySet().iterator();
+			myIterator it=content.entrySet().myIterator();
 			while(it.hasNext()) {
-				Map.Entry e=(Map.Entry)it.next();
+				myMap.Entry e=(myMap.Entry)it.next();
 				int c=((Integer)e.getValue()).intValue();
 				p.put(
 					((Monomial)e.getKey()).multiply(m),
@@ -69,9 +69,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 	public Polynomial multiply(Generic generic) {
 		ModularPolynomial p=(ModularPolynomial)newinstance();
 		int a=((JSCLInteger)generic).intValue();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			int c=((Integer)e.getValue()).intValue();
 			p.put(
 				(Monomial)e.getKey(),
@@ -85,9 +85,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 	public Polynomial multiply(Monomial monomial, Generic generic) {
 		ModularPolynomial p=(ModularPolynomial)newinstance();
 		int a=((JSCLInteger)generic).intValue();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			int c=((Integer)e.getValue()).intValue();
 			p.put(
 				((Monomial)e.getKey()).multiply(monomial),
@@ -100,9 +100,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 
 	public Polynomial multiply(Monomial monomial) {
 		ModularPolynomial p=(ModularPolynomial)newinstance();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				((Monomial)e.getKey()).multiply(monomial),
 				((Integer)e.getValue()).intValue()
@@ -115,9 +115,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 	public Polynomial divide(Generic generic) throws ArithmeticException {
 		ModularPolynomial p=(ModularPolynomial)newinstance();
 		int a=((JSCLInteger)generic).intValue();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			int c=((Integer)e.getValue()).intValue();
 			if(c%a==0) p.put(
 				(Monomial)e.getKey(),
@@ -131,9 +131,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 
 	public Polynomial divide(Monomial monomial) throws ArithmeticException {
 		ModularPolynomial p=(ModularPolynomial)newinstance();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				((Monomial)e.getKey()).divide(monomial),
 				((Integer)e.getValue()).intValue()
@@ -145,7 +145,7 @@ class ModularPolynomial extends MultivariatePolynomial {
 
 	public Generic gcd() {
 		int a=coefficient(JSCLInteger.valueOf(0)).intValue();
-		for(Iterator it=content.values().iterator(true);it.hasNext();) {
+		for(myIterator it=content.values().myIterator(true);it.hasNext();) {
 			a=gcd(a,((Integer)it.next()).intValue());
 		}
 		return JSCLInteger.valueOf(a);
@@ -163,32 +163,32 @@ class ModularPolynomial extends MultivariatePolynomial {
 	public Polynomial normalize() {
 		if(signum()!=0) {
 			int a=((JSCLInteger)tailCoefficient()).intValue();
-			int c=BigInteger.valueOf(a).modInverse(mod).intValue();
+			int c=myBigInteger.valueOf(a).modInverse(mod).intValue();
 			return multiply(JSCLInteger.valueOf(c));
 		} else return this;
 	}
 
 	public Generic headCoefficient() {
-		return generic(content.values().iterator(true).next());
+		return generic(content.values().myIterator(true).next());
 	}
 
 	public Generic tailCoefficient() {
-		return generic(content.values().iterator().next());
+		return generic(content.values().myIterator().next());
 	}
 
 	public Polynomial s_polynomial(Polynomial polynomial) {
 		ModularPolynomial q=(ModularPolynomial)polynomial;
-		Map.Entry e1=headTerm();
+		myMap.Entry e1=headTerm();
 		Monomial m1=(Monomial)e1.getKey();
 		int c1=((Integer)e1.getValue()).intValue();
-		Map.Entry e2=q.headTerm();
+		myMap.Entry e2=q.headTerm();
 		Monomial m2=(Monomial)e2.getKey();
 		int c2=((Integer)e2.getValue()).intValue();
 		Monomial m=m1.gcd(m2);
 		m1=m1.divide(m);
 		m2=m2.divide(m);
-//		int c=BigInteger.valueOf(c1).multiply(BigInteger.valueOf(c2).modInverse(mod)).mod(mod).intValue();
-		int a=BigInteger.valueOf(c2).modInverse(mod).intValue();
+//		int c=myBigInteger.valueOf(c1).multiply(myBigInteger.valueOf(c2).modInverse(mod)).mod(mod).intValue();
+		int a=myBigInteger.valueOf(c2).modInverse(mod).intValue();
 		int c=(int)((c1*(long)a)%modulo);
 		ModularPolynomial p=(ModularPolynomial)multiply(m2);
 		p.mutableReduce(q,m1,c);
@@ -199,21 +199,21 @@ class ModularPolynomial extends MultivariatePolynomial {
 		ModularPolynomial p=(ModularPolynomial)valueof(this);
 		Monomial l=null;
 		loop: while(p.signum()!=0) {
-			Iterator it=p.subContent(l,completely,tail).entrySet().iterator(true);
+			myIterator it=p.subContent(l,completely,tail).entrySet().myIterator(true);
 			while(it.hasNext()) {
-				Map.Entry e1=(Map.Entry)it.next();
+				myMap.Entry e1=(myMap.Entry)it.next();
 				Monomial m1=(Monomial)e1.getKey();
 				int c1=((Integer)e1.getValue()).intValue();
-				Iterator it2=basis.content.values().iterator();
+				myIterator it2=basis.content.values().myIterator();
 				while(it2.hasNext()) {
 					ModularPolynomial q=(ModularPolynomial)it2.next();
-					Map.Entry e2=q.headTerm();
+					myMap.Entry e2=q.headTerm();
 					Monomial m2=(Monomial)e2.getKey();
 					if(m1.multiple(m2)) {
 						int c2=((Integer)e2.getValue()).intValue();
 						Monomial m=m1.divide(m2);
-//						int c=BigInteger.valueOf(c1).multiply(BigInteger.valueOf(c2).modInverse(mod)).mod(mod).intValue();
-						int a=BigInteger.valueOf(c2).modInverse(mod).intValue();
+//						int c=myBigInteger.valueOf(c1).multiply(myBigInteger.valueOf(c2).modInverse(mod)).mod(mod).intValue();
+						int a=myBigInteger.valueOf(c2).modInverse(mod).intValue();
 						int c=(int)((c1*(long)a)%modulo);
 						p.mutableReduce(q,m,c);
 						l=m1;
@@ -227,9 +227,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 	}
 
 	void mutableReduce(ModularPolynomial p, Monomial m, int a) {
-		Iterator it=p.content.entrySet().iterator();
+		myIterator it=p.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			int c=((Integer)e.getValue()).intValue();
 			put(
 				((Monomial)e.getKey()).multiply(m),
@@ -241,9 +241,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 
 	public Generic genericValue() {
 		Generic a=JSCLInteger.valueOf(0);
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Monomial m=(Monomial)e.getKey();
 			Generic a2=uncoefficient(generic(e.getValue()));
 			if(m.degree()>0) a=a.add(a2.multiply(Expression.valueOf(m.literalValue())));
@@ -272,7 +272,7 @@ class ModularPolynomial extends MultivariatePolynomial {
 
 	public Generic[] elements() {
 		Generic a[]=new Generic[content.size()];
-		Iterator it=content.values().iterator();
+		myIterator it=content.values().myIterator();
 		for(int i=0;it.hasNext();i++) {
 			a[i]=generic(it.next());
 		}
@@ -285,8 +285,8 @@ class ModularPolynomial extends MultivariatePolynomial {
 
 	public int compareTo(Polynomial polynomial) {
 		ModularPolynomial p=(ModularPolynomial)polynomial;
-		Iterator it1=content.entrySet().iterator(true);
-		Iterator it2=p.content.entrySet().iterator(true);
+		myIterator it1=content.entrySet().myIterator(true);
+		myIterator it2=p.content.entrySet().myIterator(true);
 		while(true) {
 			boolean b1=!it1.hasNext();
 			boolean b2=!it2.hasNext();
@@ -294,8 +294,8 @@ class ModularPolynomial extends MultivariatePolynomial {
 			else if(b1) return -1;
 			else if(b2) return 1;
 			else {
-				Map.Entry e1=(Map.Entry)it1.next();
-				Map.Entry e2=(Map.Entry)it2.next();
+				myMap.Entry e1=(myMap.Entry)it1.next();
+				myMap.Entry e2=(myMap.Entry)it2.next();
 				Monomial m1=(Monomial)e1.getKey();
 				Monomial m2=(Monomial)e2.getKey();
 				int c=m1.compareTo(m2);
@@ -312,9 +312,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 	}
 
 	void put(Polynomial polynomial) {
-		Iterator it=((ModularPolynomial)polynomial).content.entrySet().iterator();
+		myIterator it=((ModularPolynomial)polynomial).content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			put(
 				(Monomial)e.getKey(),
 				((Integer)e.getValue()).intValue()
@@ -326,9 +326,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 	void put(Generic generic) {
 		if(generic instanceof Expression) {
 			Expression ex=(Expression)generic;
-			Iterator it=ex.content.entrySet().iterator();
+			myIterator it=ex.content.entrySet().myIterator();
 			while(it.hasNext()) {
-				Map.Entry e=(Map.Entry)it.next();
+				myMap.Entry e=(myMap.Entry)it.next();
 				Literal l=(Literal)e.getKey();
 				JSCLInteger en=(JSCLInteger)e.getValue();
 				Monomial m=monomial(l);
@@ -349,7 +349,7 @@ class ModularPolynomial extends MultivariatePolynomial {
 	}
 
 	void put(Monomial monomial, int n) {
-		Map.Entry e=content.myGetEntry(monomial);
+		myMap.Entry e=content.myGetEntry(monomial);
 		if(e!=null) {
 			int a=((Integer)e.getValue()).intValue();
 			int c=(int)((n+(long)a)%modulo);
@@ -366,9 +366,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 	public String toString() {
 		StringBuffer buffer=new StringBuffer();
 		if(signum()==0) buffer.append("0");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Monomial m=(Monomial)e.getKey();
 			int a=((Integer)e.getValue()).intValue();
 			if(a>0 && i>0) buffer.append("+");
@@ -387,9 +387,9 @@ class ModularPolynomial extends MultivariatePolynomial {
 		IndentedBuffer buffer=new IndentedBuffer();
 		buffer.append("<mrow>\n");
 		if(signum()==0) buffer.append(1,"<mn>0</mn>\n");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Monomial m=(Monomial)e.getKey();
 			int a=((Integer)e.getValue()).intValue();
 			if(a>0 && i>0) buffer.append(1,"<mo>+</mo>\n");
@@ -409,5 +409,5 @@ class ModularPolynomial extends MultivariatePolynomial {
 		return new ModularPolynomial(unknown,ordering,modulo);
 	}
 
-	private BigInteger mod;
+	private myBigInteger mod;
 }

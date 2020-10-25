@@ -1,6 +1,8 @@
 package jscl.math;
 
 import java.util.*;
+import myjava.util.*;
+import myjava.lang.*;
 
 public class Factorization {
 	Generic result;
@@ -308,7 +310,7 @@ class CandidateGenerator {
 	}
 }
 
-class Candidate implements Comparable {
+class Candidate implements myComparable {
 	Monomial head;
 	Monomial tail;
 	Generic headcoef;

@@ -1,6 +1,6 @@
 package jscl.math;
 
-import java.util.*;
+import myjava.util.*;
 import jscl.math.function.*;
 import jscl.math.operator.*;
 import jscl.text.*;
@@ -31,9 +31,9 @@ public class Expression extends Generic {
 
 	public Expression subtract(Expression expression) {
 		Expression ex=(Expression)valueof(this);
-		Iterator it=expression.content.entrySet().iterator();
+		myIterator it=expression.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			ex.put(
 				(Literal)e.getKey(),
 				(JSCLInteger)((JSCLInteger)e.getValue()).negate()
@@ -54,14 +54,14 @@ public class Expression extends Generic {
 
 	public Expression multiply(Expression expression) {
 		Expression ex=(Expression)newinstance();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
-			Iterator it2=expression.content.entrySet().iterator();
+			myIterator it2=expression.content.entrySet().myIterator();
 			while(it2.hasNext()) {
-				Map.Entry e2=(Map.Entry)it2.next();
+				myMap.Entry e2=(myMap.Entry)it2.next();
 				ex.put(
 					(Literal)l.multiply((Literal)e2.getKey()),
 					(JSCLInteger)en.multiply((JSCLInteger)e2.getValue())
@@ -76,9 +76,9 @@ public class Expression extends Generic {
 			return multiply((Expression)generic);
 		} else if(generic instanceof JSCLInteger) {
 			Expression ex=(Expression)newinstance();
-			Iterator it=content.entrySet().iterator();
+			myIterator it=content.entrySet().myIterator();
 			while(it.hasNext()) {
-				Map.Entry e=(Map.Entry)it.next();
+				myMap.Entry e=(myMap.Entry)it.next();
 				ex.put(
 					(Literal)e.getKey(),
 					(JSCLInteger)((JSCLInteger)e.getValue()).multiply(generic)
@@ -117,9 +117,9 @@ public class Expression extends Generic {
 		} else if(generic instanceof JSCLInteger) {
 			try {
 				Expression ex=(Expression)newinstance();
-				Iterator it=content.entrySet().iterator();
+				myIterator it=content.entrySet().myIterator();
 				while(it.hasNext()) {
-					Map.Entry e=(Map.Entry)it.next();
+					myMap.Entry e=(myMap.Entry)it.next();
 					ex.put(
 						(Literal)e.getKey(),
 						(JSCLInteger)((JSCLInteger)e.getValue()).divide(generic)
@@ -155,7 +155,7 @@ public class Expression extends Generic {
 
 	public Generic gcd() {
 		Generic a=JSCLInteger.valueOf(0);
-		for(Iterator it=content.values().iterator();it.hasNext();) {
+		for(myIterator it=content.values().myIterator();it.hasNext();) {
 			a=a.gcd((JSCLInteger)it.next());
 		}
 		return a;
@@ -163,7 +163,7 @@ public class Expression extends Generic {
 
 	Literal literalScm() {
 		Literal l=new Literal();
-		for(Iterator it=content.keySet().iterator();it.hasNext();) {
+		for(myIterator it=content.keySet().myIterator();it.hasNext();) {
 			l=l.scm((Literal)it.next());
 		}
 		return l;
@@ -176,7 +176,7 @@ public class Expression extends Generic {
 
 	public int signum() {
 		if(content.isEmpty()) return 0;
-		else return ((Generic)content.values().iterator().next()).signum();
+		else return ((Generic)content.values().myIterator().next()).signum();
 	}
 
 	public int degree() {
@@ -226,7 +226,7 @@ public class Expression extends Generic {
 	public Generic derivative(Variable variable) {
 		Generic s=JSCLInteger.valueOf(0);
 		Literal l=literalScm();
-		Iterator it=l.content.keySet().iterator();
+		myIterator it=l.content.keySet().myIterator();
 		while(it.hasNext()) {
 			Variable v=(Variable)it.next();
 			Generic a=UnivariatePolynomial.valueOf(this,v).derivative(variable).genericValue();
@@ -237,7 +237,7 @@ public class Expression extends Generic {
 
 	public Generic substitute(Variable variable, Generic generic) {
 		Literal l=literalScm();
-		Iterator it=l.content.keySet().iterator();
+		myIterator it=l.content.keySet().myIterator();
 		while(it.hasNext()) {
 			Variable v=(Variable)it.next();
 			l.content.put(v,v.substitute(variable,generic));
@@ -245,20 +245,20 @@ public class Expression extends Generic {
 		return substitute(l.content);
 	}
 
-	Generic substitute(MyMap map) {
+	Generic substitute(MyMap myMap) {
 		Generic s=JSCLInteger.valueOf(0);
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
 			Generic a=en;
-			Iterator it2=l.content.entrySet().iterator();
+			myIterator it2=l.content.entrySet().myIterator();
 			while(it2.hasNext()) {
-				Map.Entry e2=(Map.Entry)it2.next();
+				myMap.Entry e2=(myMap.Entry)it2.next();
 				Variable v=(Variable)e2.getKey();
 				int c=((Integer)e2.getValue()).intValue();
-				Generic a2=(Generic)map.get(v);
+				Generic a2=(Generic)myMap.get(v);
 				a2=a2.pow(c);
 				if(Matrix.product(a,a2)) throw new ArithmeticException();
 				a=a.multiply(a2);
@@ -270,7 +270,7 @@ public class Expression extends Generic {
 
 	public Generic expand() {
 		Literal l=literalScm();
-		Iterator it=l.content.keySet().iterator();
+		myIterator it=l.content.keySet().myIterator();
 		while(it.hasNext()) {
 			Variable v=(Variable)it.next();
 			l.content.put(v,v.expand());
@@ -280,7 +280,7 @@ public class Expression extends Generic {
 
 	public Generic factorize() {
 		Literal l=literalScm();
-		Iterator it=l.content.keySet().iterator();
+		myIterator it=l.content.keySet().myIterator();
 		while(it.hasNext()) {
 			Variable v=(Variable)it.next();
 			l.content.put(v,v.factorize());
@@ -293,7 +293,7 @@ public class Expression extends Generic {
 
 	public Generic elementary() {
 		Literal l=literalScm();
-		Iterator it=l.content.keySet().iterator();
+		myIterator it=l.content.keySet().myIterator();
 		while(it.hasNext()) {
 			Variable v=(Variable)it.next();
 			l.content.put(v,v.elementary());
@@ -312,7 +312,7 @@ public class Expression extends Generic {
 			return integerValue().numeric();
 		} catch (NotIntegerException e) {
 			Literal l=literalScm();
-			Iterator it=l.content.keySet().iterator();
+			myIterator it=l.content.keySet().myIterator();
 			while(it.hasNext()) {
 				Variable v=(Variable)it.next();
 				l.content.put(v,v.numeric());
@@ -329,9 +329,9 @@ public class Expression extends Generic {
 
 	public Generic[] sumValue() {
 		Generic a[]=new Generic[content.size()];
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;i<a.length;i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
 			Expression ex=(Expression)newinstance();
@@ -345,7 +345,7 @@ public class Expression extends Generic {
 		int n=content.size();
 		if(n==0) return new Generic[] {JSCLInteger.valueOf(0)};
 		else if(n==1) {
-			Map.Entry e=(Map.Entry)content.entrySet().iterator().next();
+			myMap.Entry e=(myMap.Entry)content.entrySet().myIterator().next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
 			Generic p[]=l.productValue();
@@ -363,7 +363,7 @@ public class Expression extends Generic {
 		int n=content.size();
 		if(n==0) return new Object[] {JSCLInteger.valueOf(0),new Integer(1)};
 		else if(n==1) {
-			Map.Entry e=(Map.Entry)content.entrySet().iterator().next();
+			myMap.Entry e=(myMap.Entry)content.entrySet().myIterator().next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
 			if(en.compareTo(JSCLInteger.valueOf(1))==0) return l.powerValue();
@@ -380,7 +380,7 @@ public class Expression extends Generic {
 		int n=content.size();
 		if(n==0) return JSCLInteger.valueOf(0);
 		else if(n==1) {
-			Map.Entry e=(Map.Entry)content.entrySet().iterator().next();
+			myMap.Entry e=(myMap.Entry)content.entrySet().myIterator().next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
 			if(l.degree()==0) return en;
@@ -392,7 +392,7 @@ public class Expression extends Generic {
 		int n=content.size();
 		if(n==0) throw new NotVariableException();
 		else if(n==1) {
-			Map.Entry e=(Map.Entry)content.entrySet().iterator().next();
+			myMap.Entry e=(myMap.Entry)content.entrySet().myIterator().next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
 			if(en.compareTo(JSCLInteger.valueOf(1))==0) return l.variableValue();
@@ -407,7 +407,7 @@ public class Expression extends Generic {
 	public boolean isPolynomial(Variable variable) {
 		boolean s=true;
 		Literal l=literalScm();
-		Iterator it=l.content.keySet().iterator();
+		myIterator it=l.content.keySet().myIterator();
 		while(it.hasNext()) {
 			Variable v=(Variable)it.next();
 			s=s && (v.isConstant(variable) || v.isIdentity(variable));
@@ -418,7 +418,7 @@ public class Expression extends Generic {
 	public boolean isConstant(Variable variable) {
 		boolean s=true;
 		Literal l=literalScm();
-		Iterator it=l.content.keySet().iterator();
+		myIterator it=l.content.keySet().myIterator();
 		while(it.hasNext()) {
 			Variable v=(Variable)it.next();
 			s=s && v.isConstant(variable);
@@ -437,8 +437,8 @@ public class Expression extends Generic {
 	}
 
 	public int compareTo(Expression expression) {
-		Iterator it1=content.entrySet().iterator(true);
-		Iterator it2=expression.content.entrySet().iterator(true);
+		myIterator it1=content.entrySet().myIterator(true);
+		myIterator it2=expression.content.entrySet().myIterator(true);
 		while(true) {
 			boolean b1=!it1.hasNext();
 			boolean b2=!it2.hasNext();
@@ -446,8 +446,8 @@ public class Expression extends Generic {
 			else if(b1) return -1;
 			else if(b2) return 1;
 			else {
-				Map.Entry e1=(Map.Entry)it1.next();
-				Map.Entry e2=(Map.Entry)it2.next();
+				myMap.Entry e1=(myMap.Entry)it1.next();
+				myMap.Entry e2=(myMap.Entry)it2.next();
 				Literal l1=(Literal)e1.getKey();
 				Literal l2=(Literal)e2.getKey();
 				int c=l1.compareTo(l2);
@@ -512,9 +512,9 @@ public class Expression extends Generic {
 	void put(Generic generic) {
 		if(generic instanceof Expression) {
 			Expression ex=(Expression)generic;
-			Iterator it=ex.content.entrySet().iterator();
+			myIterator it=ex.content.entrySet().myIterator();
 			while(it.hasNext()) {
-				Map.Entry e=(Map.Entry)it.next();
+				myMap.Entry e=(myMap.Entry)it.next();
 				put(
 					(Literal)e.getKey(),
 					(JSCLInteger)e.getValue()
@@ -540,9 +540,9 @@ public class Expression extends Generic {
 	public String toString() {
 		StringBuffer buffer=new StringBuffer();
 		if(signum()==0) buffer.append("0");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
 			if(en.signum()>0 && i>0) buffer.append("+");
@@ -560,9 +560,9 @@ public class Expression extends Generic {
 	public String toJava() {
 		StringBuffer buffer=new StringBuffer();
 		if(signum()==0) buffer.append("JSCLDouble.valueOf(0)");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
 			if(i>0) {
@@ -586,9 +586,9 @@ public class Expression extends Generic {
 		IndentedBuffer buffer=new IndentedBuffer();
 		buffer.append("<mrow>\n");
 		if(signum()==0) buffer.append(1,"<mn>0</mn>\n");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Literal l=(Literal)e.getKey();
 			JSCLInteger en=(JSCLInteger)e.getValue();
 			if(en.signum()>0 && i>0) buffer.append(1,"<mo>+</mo>\n");

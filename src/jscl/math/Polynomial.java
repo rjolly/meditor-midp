@@ -1,6 +1,8 @@
 package jscl.math;
 
-public abstract class Polynomial implements Arithmetic, Comparable {
+import myjava.lang.*;
+
+public abstract class Polynomial implements Arithmetic, myComparable {
 	public abstract Polynomial add(Polynomial polynomial);
 
 	public Polynomial subtract(Polynomial polynomial) {

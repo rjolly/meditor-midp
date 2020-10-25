@@ -1,6 +1,7 @@
 package jscl.math.function;
 
 import java.util.*;
+import myjava.util.*;
 import jscl.math.*;
 import jscl.text.*;
 import jscl.util.*;
@@ -90,7 +91,7 @@ public class Constant extends Variable {
 
 	public int compareTo(Variable variable) {
 		if(this==variable) return 0;
-		int c=comparator.compare(this,variable);
+		int c=myComparator.compare(this,variable);
 		if(c<0) return -1;
 		else if(c>0) return 1;
 		else {
@@ -101,7 +102,7 @@ public class Constant extends Variable {
 			else {
 				if(prime<v.prime) return -1;
 				else if(prime>v.prime) return 1;
-				else return ArrayComparator.comparator.compare(subscript,v.subscript);
+				else return ArrayComparator.myComparator.compare(subscript,v.subscript);
 			}
 		}
 	}

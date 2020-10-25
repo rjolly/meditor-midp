@@ -1,6 +1,7 @@
 package jscl.math;
+import myjava.lang.*;
 
-public abstract class Generic implements Arithmetic, Comparable {
+public abstract class Generic implements Arithmetic, myComparable {
 	public abstract Generic add(Generic generic);
 
 	public Generic subtract(Generic generic) {

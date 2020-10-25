@@ -3,8 +3,7 @@
  * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package jscl.util;
-import myjava.util.*;
+package myjava.util;
 
 /**
  * An object that maps keys to values.  A myMap cannot contain duplicate keys;
@@ -40,13 +39,15 @@ import myjava.util.*;
  *
  * @author  Josh Bloch
  * @version 1.33, 02/06/02
+ * @see HashMap
+ * @see myTreeMap
+ * @see Hashtable
  * @see mySortedMap
  * @see myCollection
  * @see mySet
  * @since 1.2
  */
-
-public interface MyMap {
+public interface myMap {
     // Query Operations
 
     /**
@@ -114,8 +115,6 @@ public interface MyMap {
      * @see #containsKey(Object)
      */
     Object get(Object key);
-
-    myMap.Entry myGetEntry(Object key);
 
     // Modification Operations
 
@@ -207,7 +206,7 @@ public interface MyMap {
      *
      * @return a mySet view of the keys contained in this myMap.
      */
-    public MySet keySet();
+    public mySet keySet();
 
     /**
      * Returns a myCollection view of the values contained in this myMap.  The
@@ -222,7 +221,7 @@ public interface MyMap {
      *
      * @return a myCollection view of the values contained in this myMap.
      */
-    public MyCollection values();
+    public myCollection values();
 
     /**
      * Returns a mySet view of the mappings contained in this myMap.  Each element
@@ -237,8 +236,98 @@ public interface MyMap {
      *
      * @return a mySet view of the mappings contained in this myMap.
      */
-    public MySet entrySet();
+    public mySet entrySet();
 
+    /**
+     * A myMap entry (key-value pair).  The <tt>myMap.entrySet</tt> method returns
+     * a myCollection-view of the myMap, whose elements are of this class.  The
+     * <i>only</i> way to obtain a reference to a myMap entry is from the
+     * myIterator of this myCollection-view.  These <tt>myMap.Entry</tt> objects are
+     * valid <i>only</i> for the duration of the iteration; more formally,
+     * the behavior of a myMap entry is undefined if the backing myMap has been
+     * modified after the entry was returned by the myIterator, except through
+     * the myIterator's own <tt>remove</tt> operation, or through the
+     * <tt>setValue</tt> operation on a myMap entry returned by the myIterator.
+     *
+     * @see myMap#entrySet()
+     * @since 1.2
+     */
+    public interface Entry {
+    	/**
+	 * Returns the key corresponding to this entry.
+	 *
+	 * @return the key corresponding to this entry.
+	 */
+	Object getKey();
+
+    	/**
+	 * Returns the value corresponding to this entry.  If the mapping
+	 * has been removed from the backing myMap (by the myIterator's
+	 * <tt>remove</tt> operation), the results of this call are undefined.
+	 *
+	 * @return the value corresponding to this entry.
+	 */
+	Object getValue();
+
+    	/**
+	 * Replaces the value corresponding to this entry with the specified
+	 * value (optional operation).  (Writes through to the myMap.)  The
+	 * behavior of this call is undefined if the mapping has already been
+	 * removed from the myMap (by the myIterator's <tt>remove</tt> operation).
+	 *
+	 * @param value new value to be stored in this entry.
+	 * @return old value corresponding to the entry.
+         * 
+	 * @throws UnsupportedOperationException if the <tt>put</tt> operation
+	 *	      is not supported by the backing myMap.
+	 * @throws ClassCastException if the class of the specified value
+	 * 	      prevents it from being stored in the backing myMap.
+	 * @throws    IllegalArgumentException if some aspect of this value
+	 *	      prevents it from being stored in the backing myMap.
+	 * @throws NullPointerException the backing myMap does not permit
+	 *	      <tt>null</tt> values, and the specified value is
+	 *	      <tt>null</tt>.
+         */
+	Object setValue(Object value);
+
+	/**
+	 * Compares the specified object with this entry for equality.
+	 * Returns <tt>true</tt> if the given object is also a myMap entry and
+	 * the two entries represent the same mapping.  More formally, two
+	 * entries <tt>e1</tt> and <tt>e2</tt> represent the same mapping
+	 * if<pre>
+         *     (e1.getKey()==null ?
+         *      e2.getKey()==null : e1.getKey().equals(e2.getKey()))  &&
+         *     (e1.getValue()==null ?
+         *      e2.getValue()==null : e1.getValue().equals(e2.getValue()))
+         * </pre>
+	 * This ensures that the <tt>equals</tt> method works properly across
+	 * different implementations of the <tt>myMap.Entry</tt> interface.
+	 *
+	 * @param o object to be compared for equality with this myMap entry.
+	 * @return <tt>true</tt> if the specified object is equal to this myMap
+	 *         entry.
+         */
+	boolean equals(Object o);
+
+	/**
+	 * Returns the hash code value for this myMap entry.  The hash code
+	 * of a myMap entry <tt>e</tt> is defined to be: <pre>
+	 *     (e.getKey()==null   ? 0 : e.getKey().hashCode()) ^
+	 *     (e.getValue()==null ? 0 : e.getValue().hashCode())
+         * </pre>
+	 * This ensures that <tt>e1.equals(e2)</tt> implies that
+	 * <tt>e1.hashCode()==e2.hashCode()</tt> for any two Entries
+	 * <tt>e1</tt> and <tt>e2</tt>, as required by the general
+	 * contract of <tt>Object.hashCode</tt>.
+	 *
+	 * @return the hash code value for this myMap entry.
+	 * @see Object#hashCode()
+	 * @see Object#equals(Object)
+	 * @see #equals(Object)
+	 */
+	int hashCode();
+    }
 
     // Comparison and hashing
 
@@ -265,6 +354,7 @@ public interface MyMap {
      * contract of Object.hashCode.
      *
      * @return the hash code value for this myMap.
+     * @see myMap.Entry#hashCode()
      * @see Object#hashCode()
      * @see Object#equals(Object)
      * @see #equals(Object)

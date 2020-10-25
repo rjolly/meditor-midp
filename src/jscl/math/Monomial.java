@@ -1,23 +1,24 @@
 package jscl.math;
 
-import java.util.*;
+import myjava.lang.*;
+import myjava.util.*;
 import jscl.math.function.*;
 import jscl.text.*;
 
-public class Monomial implements Comparable {
-	public static final Comparator lexicographic=Lexicographic.comparator;
-	public static final Comparator totalDegreeLexicographic=TotalDegreeLexicographic.comparator;
-	public static final Comparator degreeReverseLexicographic=DegreeReverseLexicographic.comparator;
+public class Monomial implements myComparable {
+	public static final myComparator lexicographic=Lexicographic.myComparator;
+	public static final myComparator totalDegreeLexicographic=TotalDegreeLexicographic.myComparator;
+	public static final myComparator degreeReverseLexicographic=DegreeReverseLexicographic.myComparator;
 	final Variable unknown[];
-	final Comparator ordering;
+	final myComparator ordering;
 	int element[];
 	int degree;
 
-	Monomial(Variable unknown[], Comparator ordering) {
+	Monomial(Variable unknown[], myComparator ordering) {
 		this(new int[unknown.length],unknown,ordering);
 	}
 
-	Monomial(int element[], Variable unknown[], Comparator ordering) {
+	Monomial(int element[], Variable unknown[], myComparator ordering) {
 		this.element=element;
 		this.unknown=unknown;
 		this.ordering=ordering;
@@ -29,7 +30,7 @@ public class Monomial implements Comparable {
 		return i;
 	}
 
-	public static Comparator kthElimination(int k) {
+	public static myComparator kthElimination(int k) {
 		return new KthElimination(k);
 	}
 
@@ -143,16 +144,16 @@ public class Monomial implements Comparable {
 		return element[n];
 	}
 
-	public static Monomial valueOf(Literal literal, Variable unknown[], Comparator ordering) {
+	public static Monomial valueOf(Literal literal, Variable unknown[], myComparator ordering) {
 		Monomial m=new Monomial(unknown,ordering);
 		m.put(literal);
 		return m;
 	}
 
 	void put(Literal literal) {
-		Iterator it=literal.content.entrySet().iterator();
+		myIterator it=literal.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Variable v=(Variable)e.getKey();
 			int c=((Integer)e.getValue()).intValue();
 			int n=variable(v,unknown);
@@ -204,8 +205,8 @@ public class Monomial implements Comparable {
 	}
 }
 
-class Lexicographic implements Comparator {
-	public static final Comparator comparator=new Lexicographic();
+class Lexicographic implements myComparator {
+	public static final myComparator myComparator=new Lexicographic();
 
 	private Lexicographic() {}
 
@@ -223,8 +224,8 @@ class Lexicographic implements Comparator {
 	}
 }
 
-class TotalDegreeLexicographic implements Comparator {
-	public static final Comparator comparator=new TotalDegreeLexicographic();
+class TotalDegreeLexicographic implements myComparator {
+	public static final myComparator myComparator=new TotalDegreeLexicographic();
 
 	private TotalDegreeLexicographic() {}
 
@@ -246,8 +247,8 @@ class TotalDegreeLexicographic implements Comparator {
 	}
 }
 
-class DegreeReverseLexicographic implements Comparator {
-	public static final Comparator comparator=new DegreeReverseLexicographic();
+class DegreeReverseLexicographic implements myComparator {
+	public static final myComparator myComparator=new DegreeReverseLexicographic();
 
 	private DegreeReverseLexicographic() {}
 
@@ -269,7 +270,7 @@ class DegreeReverseLexicographic implements Comparator {
 	}
 }
 
-class KthElimination implements Comparator {
+class KthElimination implements myComparator {
 	int k;
 
 	KthElimination(int k) {
@@ -287,6 +288,6 @@ class KthElimination implements Comparator {
 			if(c1[i]<c2[i]) return -1;
 			else if(c1[i]>c2[i]) return 1;
 		}
-		return DegreeReverseLexicographic.comparator.compare(m1,m2);
+		return DegreeReverseLexicographic.myComparator.compare(m1,m2);
 	}
 }

@@ -1,11 +1,13 @@
 package jscl.math;
 
+import myjava.util.*;
 import java.util.*;
+import myjava.lang.*;
 import jscl.math.function.*;
 import jscl.util.*;
 
 public class Simplification {
-	Map cache=new TreeMap();
+	myMap cache=new myTreeMap();
 	Generic result;
 	Vector constraint;
 	boolean linear;

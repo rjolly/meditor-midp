@@ -1,19 +1,19 @@
 package jscl.math;
 
-import java.math.*;
+import myjava.math.*;
 import jscl.text.*;
 
 public class Rational extends Generic {
-	BigInteger numerator;
-	BigInteger denominator;
+	myBigInteger numerator;
+	myBigInteger denominator;
 
 	Rational() {}
 
 	public Rational add(Rational rational) {
 		Rational r=(Rational)newinstance();
-		BigInteger gcd=denominator.gcd(rational.denominator);
-		BigInteger c=denominator.divide(gcd);
-		BigInteger c2=rational.denominator.divide(gcd);
+		myBigInteger gcd=denominator.gcd(rational.denominator);
+		myBigInteger c=denominator.divide(gcd);
+		myBigInteger c2=rational.denominator.divide(gcd);
 		r.put(numerator.multiply(c2).add(rational.numerator.multiply(c)),denominator.multiply(c2));
 		r.reduce();
 		return r;
@@ -30,7 +30,7 @@ public class Rational extends Generic {
 	}
 
 	void reduce() {
-		BigInteger gcd=numerator.gcd(denominator);
+		myBigInteger gcd=numerator.gcd(denominator);
 		if(gcd.signum()==0) return;
 		if(gcd.signum()!=denominator.signum()) gcd=gcd.negate();
 		numerator=numerator.divide(gcd);
@@ -39,8 +39,8 @@ public class Rational extends Generic {
 
 	public Rational multiply(Rational rational) {
 		Rational r=(Rational)newinstance();
-		BigInteger gcd=numerator.gcd(rational.denominator);
-		BigInteger gcd2=denominator.gcd(rational.numerator);
+		myBigInteger gcd=numerator.gcd(rational.denominator);
+		myBigInteger gcd2=denominator.gcd(rational.numerator);
 		r.put(numerator.divide(gcd).multiply(rational.numerator.divide(gcd2)),denominator.divide(gcd2).multiply(rational.denominator.divide(gcd)));
 		return r;
 	}
@@ -88,7 +88,7 @@ public class Rational extends Generic {
 		}
 	}
 
-	static BigInteger scm(BigInteger b1, BigInteger b2) {
+	static myBigInteger scm(myBigInteger b1, myBigInteger b2) {
 		return b1.multiply(b2).divide(b1.gcd(b2));
 	}
 
@@ -179,7 +179,7 @@ public class Rational extends Generic {
 	}
 
 	public JSCLInteger integerValue() throws NotIntegerException {
-		if(denominator.compareTo(BigInteger.valueOf(1))==0) {
+		if(denominator.compareTo(myBigInteger.valueOf(1))==0) {
 			JSCLInteger e=new JSCLInteger();
 			e.put(numerator);
 			return e;
@@ -231,11 +231,11 @@ public class Rational extends Generic {
 			put(r.numerator,r.denominator);
 		} else if(generic instanceof JSCLInteger) { 
 			JSCLInteger en=(JSCLInteger)generic;
-			put(en.content,BigInteger.valueOf(1));
+			put(en.content,myBigInteger.valueOf(1));
 		} else throw new ArithmeticException();
 	}
 
-	void put(BigInteger numerator, BigInteger denominator) {
+	void put(myBigInteger numerator, myBigInteger denominator) {
 		this.numerator=numerator;
 		this.denominator=denominator;
 	}

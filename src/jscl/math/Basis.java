@@ -1,25 +1,27 @@
 package jscl.math;
 
 import java.util.*;
+import myjava.util.*;
+import myjava.lang.*;
 
 public class Basis {
-	static final Comparator comparator=Saccharine.comparator;
-	final Map content=new TreeMap(comparator);
+	static final myComparator myComparator=Saccharine.myComparator;
+	final myMap content=new myTreeMap(myComparator);
 	final Variable unknown[];
-	final Comparator ordering;
+	final myComparator ordering;
 	final int modulo;
-	SortedMap pairs=new TreeMap();
-//	Map considered=new TreeMap();
+	mySortedMap pairs=new myTreeMap();
+//	myMap considered=new myTreeMap();
 	int index;
 
-	public Basis(Generic generic[], Variable unknown[], Comparator ordering, int modulo) {
+	public Basis(Generic generic[], Variable unknown[], myComparator ordering, int modulo) {
 		this.unknown=unknown;
 		this.ordering=ordering;
 		this.modulo=modulo;
 		for(int i=0;i<generic.length;i++) put(generic[i]);
 	}
 
-	public Basis(Basis basis, Variable unknown[], Comparator ordering, int modulo) {
+	public Basis(Basis basis, Variable unknown[], myComparator ordering, int modulo) {
 		this(new Generic[0],unknown,ordering,modulo);
 		Polynomial p[]=basis.elements();
 		for(int i=0;i<p.length;i++) put(p[i].genericValue());
@@ -79,9 +81,9 @@ public class Basis {
 	void remove(Handle handle) {
 		handle.removed=true;
 //		content.remove(handle);
-//		Iterator it=pairs.entrySet().iterator();
+//		myIterator it=pairs.entrySet().myIterator();
 //		while(it.hasNext()) {
-//			Map.Entry e=(Map.Entry)it.next();
+//			myMap.Entry e=(myMap.Entry)it.next();
 //			Pair pa=(Pair)e.getKey();
 //			if(pa.handle[0].compareTo(handle)==0 || pa.handle[1].compareTo(handle)==0) it.remove();
 //		}
@@ -101,8 +103,8 @@ public class Basis {
 	}
 
 	void makePairs(Handle handle) {
-		Iterator it=content.keySet().iterator();
-//		Iterator it=newTreeMap(content).keySet().iterator();
+		myIterator it=content.keySet().myIterator();
+//		myIterator it=newTreeMap(content).keySet().myIterator();
 		while(it.hasNext()) {
 			Handle h=(Handle)it.next();
 			Pair pa=new Pair(h,handle);
@@ -116,7 +118,7 @@ public class Basis {
 	}
 
 	boolean b_criterion(Pair pair) {
-		Iterator it=content.keySet().iterator();
+		myIterator it=content.keySet().myIterator();
 		while(it.hasNext()) {
 			Handle h=(Handle)it.next();
 			if(pair.scm.multiple(h.monomial)) {
@@ -135,9 +137,9 @@ public class Basis {
 
 	void reduce() {
 		Debug.println("reduce");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Handle h=(Handle)e.getKey();
 			if(h.removed) it.remove();
 			else {
@@ -148,20 +150,20 @@ public class Basis {
 		}
 	}
 
-	static Map newTreeMap(Map map) {
-		Map m=new TreeMap();
-		Iterator it=map.entrySet().iterator();
+	static myMap newTreeMap(myMap myMap) {
+		myMap m=new myTreeMap();
+		myIterator it=myMap.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			m.put(e.getKey(),e.getValue());
 		}
 		return m;
 	}
 
 	public Polynomial[] elements() {
-		Map map=newTreeMap(content);
-		Polynomial p[]=new Polynomial[map.size()];
-		Iterator it=map.values().iterator();
+		myMap myMap=newTreeMap(content);
+		Polynomial p[]=new Polynomial[myMap.size()];
+		myIterator it=myMap.values().myIterator();
 		for(int i=0;it.hasNext();i++) {
 			p[i]=(Polynomial)it.next();
 		}
@@ -171,7 +173,7 @@ public class Basis {
 	public String toString() {
 		StringBuffer buffer=new StringBuffer();
 		buffer.append("{");
-		Iterator it=content.values().iterator();
+		myIterator it=content.values().myIterator();
 		while(it.hasNext()) {
 			Polynomial p=(Polynomial)it.next();
 			buffer.append(p).append(it.hasNext()?", ":"");
@@ -185,7 +187,7 @@ public class Basis {
 	}
 }
 
-class Pair implements Comparable {
+class Pair implements myComparable {
 	Handle handle[];
 	Monomial scm;
 	int sugar;
@@ -197,7 +199,7 @@ class Pair implements Comparable {
 	}
 
 	Pair(Handle handle1, Handle handle2) {
-		this(Basis.comparator.compare(handle1,handle2)<0?new Handle[] {handle1,handle2}:new Handle[] {handle2,handle1});
+		this(Basis.myComparator.compare(handle1,handle2)<0?new Handle[] {handle1,handle2}:new Handle[] {handle2,handle1});
 	}
 
 	boolean reduction() {
@@ -216,11 +218,11 @@ class Pair implements Comparable {
 			if(c<0) return -1;
 			else if(c>0) return 1;
 			else {
-				c=Basis.comparator.compare(handle[1],pair.handle[1]);
+				c=Basis.myComparator.compare(handle[1],pair.handle[1]);
 				if(c<0) return -1;
 				else if(c>0) return 1;
 				else {
-					c=Basis.comparator.compare(handle[0],pair.handle[0]);
+					c=Basis.myComparator.compare(handle[0],pair.handle[0]);
 					if(c<0) return -1;
 					else if(c>0) return 1;
 					else return 0;
@@ -238,7 +240,7 @@ class Pair implements Comparable {
 	}
 }
 
-class Handle implements Comparable {
+class Handle implements myComparable {
 	Monomial monomial;
 	int ecart;
 	int index;
@@ -270,8 +272,8 @@ class Handle implements Comparable {
 	}
 }
 
-class Saccharine implements Comparator {
-	public static final Comparator comparator=new Saccharine();
+class Saccharine implements myComparator {
+	public static final myComparator myComparator=new Saccharine();
 
 	private Saccharine() {}
 

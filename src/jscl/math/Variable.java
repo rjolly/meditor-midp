@@ -1,12 +1,13 @@
 package jscl.math;
+import myjava.lang.*;
 
-import java.util.*;
+import myjava.util.*;
 import jscl.math.function.*;
 import jscl.math.operator.*;
 import jscl.text.*;
 
-public abstract class Variable implements Comparable {
-	public static final Comparator comparator=VariableComparator.comparator;
+public abstract class Variable implements myComparable {
+	public static final myComparator myComparator=VariableComparator.myComparator;
 	public static final Parser parser=VariableParser.parser;
 	public String name;
 
@@ -90,8 +91,8 @@ public abstract class Variable implements Comparable {
 	private static String na[]={"Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega","alpha","beta","gamma","delta","epsilon","zeta","eta","theta","iota","kappa","lambda","mu","nu","xi","omicron","pi","rho","sigma","tau","upsilon","phi","chi","psi","omega","infin","nabla","aleph"};
 }
 
-class VariableComparator implements Comparator {
-	public static final Comparator comparator=new VariableComparator();
+class VariableComparator implements myComparator {
+	public static final myComparator myComparator=new VariableComparator();
 
 	private VariableComparator() {}
 

@@ -1,12 +1,12 @@
 package jscl.math;
 
-import java.math.*;
+import myjava.math.*;
 import jscl.text.*;
 
 public class JSCLInteger extends Generic {
 	public static final Parser parser=JSCLIntegerParser.parser;
 	public static final Parser digits=Digits.parser;
-	BigInteger content;
+	myBigInteger content;
 
 	JSCLInteger() {}
 
@@ -68,7 +68,7 @@ public class JSCLInteger extends Generic {
 
 	public JSCLInteger[] divideAndRemainder(JSCLInteger integer) throws ArithmeticException {
 		JSCLInteger e[]={(JSCLInteger)newinstance(),(JSCLInteger)newinstance()};
-		BigInteger b[]=content.divideAndRemainder(integer.content);
+		myBigInteger b[]=content.divideAndRemainder(integer.content);
 		e[0].put(b[0]);
 		e[1].put(b[1]);
 		return e;
@@ -112,7 +112,7 @@ public class JSCLInteger extends Generic {
 
 	public Generic gcd() {
 		JSCLInteger e=(JSCLInteger)newinstance();
-		e.put(BigInteger.valueOf(signum()));
+		e.put(myBigInteger.valueOf(signum()));
 		return e;
 	}
 
@@ -198,7 +198,7 @@ public class JSCLInteger extends Generic {
 
 	public Generic derivative(Variable variable) {
 		JSCLInteger e=(JSCLInteger)newinstance();
-		e.put(BigInteger.valueOf(0));
+		e.put(myBigInteger.valueOf(0));
 		return e;
 	}
 
@@ -240,7 +240,7 @@ public class JSCLInteger extends Generic {
 	}
 
 	public Generic[] productValue() throws NotProductException {
-		if(content.compareTo(BigInteger.valueOf(1))==0) return new Generic[0];
+		if(content.compareTo(myBigInteger.valueOf(1))==0) return new Generic[0];
 		else return new Generic[] {this};
 	}
 
@@ -291,13 +291,13 @@ public class JSCLInteger extends Generic {
 
 	public static JSCLInteger valueOf(long val) {
 		JSCLInteger e=new JSCLInteger();
-		e.put(BigInteger.valueOf(val));
+		e.put(myBigInteger.valueOf(val));
 		return e;
 	}
 
 	public static JSCLInteger valueOf(String str) {
 		JSCLInteger e=new JSCLInteger();
-		e.put(new BigInteger(str));
+		e.put(new myBigInteger(str));
 		return e;
 	}
 
@@ -308,7 +308,7 @@ public class JSCLInteger extends Generic {
 		} else throw new ArithmeticException();
 	}
 
-	void put(BigInteger b) {
+	void put(myBigInteger b) {
 		content=b;
 	}
 
@@ -360,7 +360,7 @@ class JSCLIntegerParser extends Parser {
 			throw e;
 		}
 		JSCLInteger e=new JSCLInteger();
-		e.put(new BigInteger(buffer.toString()));
+		e.put(new myBigInteger(buffer.toString()));
 		return e;
 	}
 }

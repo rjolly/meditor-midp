@@ -24,12 +24,12 @@ public class Factorial extends Operator {
 
 	public int compareTo(Variable variable) {
 		if(this==variable) return 0;
-		int c=comparator.compare(this,variable);
+		int c=myComparator.compare(this,variable);
 		if(c<0) return -1;
 		else if(c>0) return 1;
 		else {
 			Factorial v=(Factorial)variable;
-			return ArrayComparator.comparator.compare(parameter,v.parameter);
+			return ArrayComparator.myComparator.compare(parameter,v.parameter);
 		}
 	}
 

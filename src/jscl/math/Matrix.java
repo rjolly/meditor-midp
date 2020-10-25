@@ -1,6 +1,7 @@
 package jscl.math;
 
 import java.util.*;
+import myjava.util.*;
 import jscl.math.function.*;
 import jscl.math.function.trigonometric.*;
 import jscl.text.*;
@@ -371,7 +372,7 @@ public class Matrix extends Generic {
 	}
 
 	public int compareTo(Matrix matrix) {
-		return ArrayComparator.comparator.compare(vectors(),matrix.vectors());
+		return ArrayComparator.myComparator.compare(vectors(),matrix.vectors());
 	}
 
 	public int compareTo(Generic generic) {

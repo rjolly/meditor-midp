@@ -1,7 +1,7 @@
 package jscl.util;
 
-import java.util.*;
+import myjava.util.*;
 
-public interface MyCollection extends Collection {
-	Iterator iterator(boolean direction);
+public interface MyCollection extends myCollection {
+	myIterator myIterator(boolean direction);
 }

@@ -1,6 +1,8 @@
 package jscl.math;
 
 import java.util.*;
+import myjava.util.*;
+import myjava.lang.*;
 import jscl.math.function.*;
 
 public class UnivariatePolynomial extends Polynomial {
@@ -413,9 +415,9 @@ public class UnivariatePolynomial extends Polynomial {
 	void put(Generic generic) {
 		if(generic instanceof Expression) {
 			Expression ex=(Expression)generic;
-			Iterator it=ex.content.entrySet().iterator();
+			myIterator it=ex.content.entrySet().myIterator();
 			while(it.hasNext()) {
-				Map.Entry e=(Map.Entry)it.next();
+				myMap.Entry e=(myMap.Entry)it.next();
 				Literal l=(Literal)e.getKey();
 				JSCLInteger en=(JSCLInteger)e.getValue();
 				Monomial m=monomial(l.get(variable));

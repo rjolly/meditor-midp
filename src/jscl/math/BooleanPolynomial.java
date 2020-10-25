@@ -1,11 +1,11 @@
 package jscl.math;
 
-import java.util.*;
+import myjava.util.*;
 
 class BooleanPolynomial extends ModularPolynomial {
 	static final Integer ONE=new Integer(1);
 
-	BooleanPolynomial(Variable unknown[], Comparator ordering) {
+	BooleanPolynomial(Variable unknown[], myComparator ordering) {
 		super(unknown,ordering,2);
 	}
 
@@ -29,11 +29,11 @@ class BooleanPolynomial extends ModularPolynomial {
 		BooleanPolynomial p=(BooleanPolynomial)valueof(this);
 		Monomial l=null;
 		loop: while(p.signum()!=0) {
-			Iterator it=p.subContent(l,completely,tail).entrySet().iterator(true);
+			myIterator it=p.subContent(l,completely,tail).entrySet().myIterator(true);
 			while(it.hasNext()) {
-				Map.Entry e1=(Map.Entry)it.next();
+				myMap.Entry e1=(myMap.Entry)it.next();
 				Monomial m1=(Monomial)e1.getKey();
-				Iterator it2=basis.content.values().iterator();
+				myIterator it2=basis.content.values().myIterator();
 				while(it2.hasNext()) {
 					BooleanPolynomial q=(BooleanPolynomial)it2.next();
 					Monomial m2=q.headMonomial();
@@ -51,9 +51,9 @@ class BooleanPolynomial extends ModularPolynomial {
 	}
 
 	void mutableReduce(BooleanPolynomial p, Monomial m) {
-		Iterator it=p.content.entrySet().iterator();
+		myIterator it=p.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			put(
 				((Monomial)e.getKey()).multiply(m),
 				((Integer)e.getValue()).intValue()

@@ -3,46 +3,46 @@
  * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package java.util;
+package myjava.util;
 
 /**
  * A comparison function, which imposes a <i>total ordering</i> on some
- * collection of objects.  Comparators can be passed to a sort method (such as
+ * myCollection of objects.  Comparators can be passed to a sort method (such as
  * <tt>Collections.sort</tt>) to allow precise control over the sort order.
  * Comparators can also be used to control the order of certain data
- * structures (such as <tt>TreeSet</tt> or <tt>TreeMap</tt>).<p>
+ * structures (such as <tt>TreeSet</tt> or <tt>myTreeMap</tt>).<p>
  *
- * The ordering imposed by a Comparator <tt>c</tt> on a set of elements
+ * The ordering imposed by a myComparator <tt>c</tt> on a mySet of elements
  * <tt>S</tt> is said to be <i>consistent with equals</i> if and only if
  * <tt>(compare((Object)e1, (Object)e2)==0)</tt> has the same boolean value as
  * <tt>e1.equals((Object)e2)</tt> for every <tt>e1</tt> and <tt>e2</tt> in
  * <tt>S</tt>.<p>
  *
- * Caution should be exercised when using a comparator capable of imposing an
- * ordering inconsistent with equals to order a sorted set (or sorted map).
- * Suppose a sorted set (or sorted map) with an explicit Comparator <tt>c</tt>
- * is used with elements (or keys) drawn from a set <tt>S</tt>.  If the
+ * Caution should be exercised when using a myComparator capable of imposing an
+ * ordering inconsistent with equals to order a sorted mySet (or sorted myMap).
+ * Suppose a sorted mySet (or sorted myMap) with an explicit myComparator <tt>c</tt>
+ * is used with elements (or keys) drawn from a mySet <tt>S</tt>.  If the
  * ordering imposed by <tt>c</tt> on <tt>S</tt> is inconsistent with equals,
- * the sorted set (or sorted map) will behave "strangely."  In particular the
- * sorted set (or sorted map) will violate the general contract for set (or
- * map), which is defined in terms of <tt>equals</tt>.<p>
+ * the sorted mySet (or sorted myMap) will behave "strangely."  In particular the
+ * sorted mySet (or sorted myMap) will violate the general contract for mySet (or
+ * myMap), which is defined in terms of <tt>equals</tt>.<p>
  * 
  * For example, if one adds two keys <tt>a</tt> and <tt>b</tt> such that
  * <tt>(a.equals((Object)b) && c.compare((Object)a, (Object)b) != 0)</tt> to a
- * sorted set with comparator <tt>c</tt>, the second <tt>add</tt> operation
- * will return false (and the size of the sorted set will not increase)
- * because <tt>a</tt> and <tt>b</tt> are equivalent from the sorted set's
+ * sorted mySet with myComparator <tt>c</tt>, the second <tt>add</tt> operation
+ * will return false (and the size of the sorted mySet will not increase)
+ * because <tt>a</tt> and <tt>b</tt> are equivalent from the sorted mySet's
  * perspective.<p>
  *
  * Note: It is generally a good idea for comparators to implement
- * <tt>java.io.Serializable</tt>, as they may be used as ordering methods in
- * serializable data structures (like <tt>TreeSet</tt>, <tt>TreeMap</tt>).  In
- * order for the data structure to serialize successfully, the comparator (if
- * provided) must implement <tt>Serializable</tt>.<p>
+ * <tt>myjava.io.mySerializable</tt>, as they may be used as ordering methods in
+ * mySerializable data structures (like <tt>TreeSet</tt>, <tt>myTreeMap</tt>).  In
+ * order for the data structure to serialize successfully, the myComparator (if
+ * provided) must implement <tt>mySerializable</tt>.<p>
  *
  * For the mathematically inclined, the <i>relation</i> that defines
- * the <i>total order</i> that a given comparator <tt>c</tt> imposes on a
- * given set of objects <tt>S</tt> is:<pre>
+ * the <i>total order</i> that a given myComparator <tt>c</tt> imposes on a
+ * given mySet of objects <tt>S</tt> is:<pre>
  *       {(x, y) such that c.compare((Object)x, (Object)y) &lt;= 0}.
  * </pre> The <i>quotient</i> for this total order is:<pre>
  *       {(x, y) such that x.compareTo((Object)y) == 0}.
@@ -60,17 +60,17 @@ package java.util;
  *
  * @author  Josh Bloch
  * @version 1.16, 02/06/02
- * @see Comparable
- * @see Arrays#sort(Object[], Comparator)
- * @see TreeMap
+ * @see myComparable
+ * @see Arrays#sort(Object[], myComparator)
+ * @see myTreeMap
  * @see TreeSet
- * @see SortedMap
+ * @see mySortedMap
  * @see SortedSet
- * @see java.io.Serializable
+ * @see myjava.io.mySerializable
  * @since 1.2
  */
 
-public interface Comparator {
+public interface myComparator {
     /**
      * Compares its two arguments for order.  Returns a negative integer,
      * zero, or a positive integer as the first argument is less than, equal
@@ -91,8 +91,8 @@ public interface Comparator {
      *
      * It is generally the case, but <i>not</i> strictly required that 
      * <tt>(compare(x, y)==0) == (x.equals(y))</tt>.  Generally speaking,
-     * any comparator that violates this condition should clearly indicate
-     * this fact.  The recommended language is "Note: this comparator
+     * any myComparator that violates this condition should clearly indicate
+     * this fact.  The recommended language is "Note: this myComparator
      * imposes orderings that are inconsistent with equals."
      * 
      * @param o1 the first object to be compared.
@@ -101,17 +101,17 @@ public interface Comparator {
      * 	       first argument is less than, equal to, or greater than the
      *	       second. 
      * @throws ClassCastException if the arguments' types prevent them from
-     * 	       being compared by this Comparator.
+     * 	       being compared by this myComparator.
      */
     int compare(Object o1, Object o2);
 
     /**
      * 
      * Indicates whether some other object is &quot;equal to&quot; this
-     * Comparator.  This method must obey the general contract of
+     * myComparator.  This method must obey the general contract of
      * <tt>Object.equals(Object)</tt>.  Additionally, this method can return
-     * <tt>true</tt> <i>only</i> if the specified Object is also a comparator
-     * and it imposes the same ordering as this comparator.  Thus,
+     * <tt>true</tt> <i>only</i> if the specified Object is also a myComparator
+     * and it imposes the same ordering as this myComparator.  Thus,
      * <code>comp1.equals(comp2)</code> implies that <tt>sgn(comp1.compare(o1,
      * o2))==sgn(comp2.compare(o1, o2))</tt> for every object reference
      * <tt>o1</tt> and <tt>o2</tt>.<p>
@@ -123,10 +123,10 @@ public interface Comparator {
      *
      * @param   obj   the reference object with which to compare.
      * @return  <code>true</code> only if the specified object is also
-     *		a comparator and it imposes the same ordering as this
-     *		comparator.
-     * @see     java.lang.Object#equals(java.lang.Object)
-     * @see java.lang.Object#hashCode()
+     *		a myComparator and it imposes the same ordering as this
+     *		myComparator.
+     * @see     myjava.lang.Object#equals(myjava.lang.Object)
+     * @see myjava.lang.Object#hashCode()
      */
     boolean equals(Object obj);
 }

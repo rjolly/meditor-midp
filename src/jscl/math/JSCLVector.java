@@ -1,6 +1,7 @@
 package jscl.math;
 
 import java.util.*;
+import myjava.util.*;
 import jscl.math.function.*;
 import jscl.text.*;
 import jscl.util.*;
@@ -313,7 +314,7 @@ public class JSCLVector extends Generic {
 	}
 
 	public int compareTo(JSCLVector vector) {
-		return ArrayComparator.comparator.compare(element,vector.element);
+		return ArrayComparator.myComparator.compare(element,vector.element);
 	}
 
 	public int compareTo(Generic generic) {

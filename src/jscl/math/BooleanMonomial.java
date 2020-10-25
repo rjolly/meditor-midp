@@ -1,6 +1,6 @@
 package jscl.math;
 
-import java.util.*;
+import myjava.util.*;
 
 abstract class BooleanMonomial extends Monomial {
 	BooleanMonomial(Variable unknown[]) {
@@ -111,7 +111,7 @@ abstract class BooleanMonomial extends Monomial {
 		return (element[q]>>r)&0x3;
 	}
 
-	public static Monomial valueOf(Literal literal, Variable unknown[], Comparator ordering) {
+	public static Monomial valueOf(Literal literal, Variable unknown[], myComparator ordering) {
 		Monomial m=null;
 		if(ordering==Monomial.lexicographic) m=new LexicographicBooleanMonomial(unknown);
 		else if(ordering==Monomial.totalDegreeLexicographic) m=new TDLBooleanMonomial(unknown);

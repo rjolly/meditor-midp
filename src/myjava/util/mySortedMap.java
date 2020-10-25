@@ -3,8 +3,7 @@
  * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package jscl.util;
-import myjava.util.*;
+package myjava.util;
 
 /**
  * A myMap that further guarantees that it will be in ascending key order,
@@ -55,13 +54,16 @@ import myjava.util.*;
  * @author  Josh Bloch
  * @version 1.13, 02/06/02
  * @see myMap
+ * @see myTreeMap
+ * @see SortedSet
  * @see myComparator
  * @see myComparable
  * @see myCollection
+ * @see ClassCastException
  * @since 1.2
  */
 
-public interface MySortedMap extends MyMap {
+public interface mySortedMap extends myMap {
     /**
      * Returns the myComparator associated with this sorted myMap, or
      * <tt>null</tt> if it uses its keys' natural ordering.
@@ -121,7 +123,7 @@ public interface MySortedMap extends MyMap {
      *	       <tt>null</tt> and this sorted myMap does not tolerate
      *	       <tt>null</tt> keys.
      */
-    MySortedMap subMap(Object fromKey, Object toKey);
+    mySortedMap subMap(Object fromKey, Object toKey);
 
     /**
      * Returns a view of the portion of this sorted myMap whose keys are
@@ -158,7 +160,7 @@ public interface MySortedMap extends MyMap {
      * @throws NullPointerException if <tt>toKey</tt> is <tt>null</tt> and
      *	       this sorted myMap does not tolerate <tt>null</tt> keys.
      */
-    MySortedMap headMap(Object toKey);
+    mySortedMap headMap(Object toKey);
 
     /**
      * Returns a view of the portion of this sorted myMap whose keys are greater
@@ -196,7 +198,7 @@ public interface MySortedMap extends MyMap {
      * @throws NullPointerException if <tt>fromKey</tt> is <tt>null</tt> and
      *	       this sorted myMap does not tolerate <tt>null</tt> keys.
      */
-    MySortedMap tailMap(Object fromKey);
+    mySortedMap tailMap(Object fromKey);
 
     /**
      * Returns the first (lowest) key currently in this sorted myMap.

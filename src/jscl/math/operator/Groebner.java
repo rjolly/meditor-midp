@@ -1,6 +1,6 @@
 package jscl.math.operator;
 
-import java.util.*;
+import myjava.util.*;
 import jscl.math.*;
 import jscl.math.function.*;
 import jscl.text.*;
@@ -13,7 +13,7 @@ public class Groebner extends Operator {
 	public Generic compute() {
 		Generic generic[]=((PolynomialVector)parameter[0]).elements();
 		Variable variable[]=variables(parameter[1]);
-		Comparator ord=ordering(parameter[2]);
+		myComparator ord=ordering(parameter[2]);
 		int m=parameter[3].integerValue().intValue();
 		Basis basis=new Basis(generic,variable,ord,m);
 		basis.compute();
@@ -26,7 +26,7 @@ public class Groebner extends Operator {
 	Operator transmute() {
 		Generic generic[]=((JSCLVector)parameter[0].expand()).elements();
 		Variable variable[]=variables(parameter[1].expand());
-		Comparator ord=ordering(parameter[2]);
+		myComparator ord=ordering(parameter[2]);
 		int m=parameter[3].integerValue().intValue();
 		return new Groebner(
 			new PolynomialVector(generic,variable,ord,m),
@@ -36,7 +36,7 @@ public class Groebner extends Operator {
 		);
 	}
 
-	static Comparator ordering(Generic generic) {
+	static myComparator ordering(Generic generic) {
 		Variable v=generic.variableValue();
 		if(v.compareTo(new Constant("lex"))==0) return Monomial.lexicographic;
 		else if(v.compareTo(new Constant("tdl"))==0) return Monomial.totalDegreeLexicographic;
@@ -97,7 +97,7 @@ public class Groebner extends Operator {
 class PolynomialVector extends JSCLVector {
 	final Basis basis;
 
-	PolynomialVector(Generic generic[], Variable unknown[], Comparator ordering, int modulo) {
+	PolynomialVector(Generic generic[], Variable unknown[], myComparator ordering, int modulo) {
 		this(generic,new Basis(new Generic[0],unknown,ordering,modulo));
 	}
 

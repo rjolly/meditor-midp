@@ -92,12 +92,12 @@ public class Frac extends Function implements Algebraic {
 
 	public int compareTo(Variable variable) {
 		if(this==variable) return 0;
-		int c=comparator.compare(this,variable);
+		int c=myComparator.compare(this,variable);
 		if(c<0) return -1;
 		else if(c>0) return 1;
 		else {
 			Frac v=(Frac)variable;
-			return ArrayComparator.comparator.compare(parameter,v.parameter);
+			return ArrayComparator.myComparator.compare(parameter,v.parameter);
 		}
 	}
 

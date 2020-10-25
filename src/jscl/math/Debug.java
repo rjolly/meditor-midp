@@ -1,6 +1,8 @@
 package jscl.math;
 
 import java.io.*;
+import myjava.io.*;
+import myjava.lang.*;
 
 public class Debug {
 	static PrintStream out;

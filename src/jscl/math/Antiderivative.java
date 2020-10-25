@@ -1,6 +1,6 @@
 package jscl.math;
 
-import java.util.*;
+import myjava.util.*;
 import jscl.math.function.*;
 
 public class Antiderivative {

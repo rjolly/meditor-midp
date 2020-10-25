@@ -1,15 +1,16 @@
 package jscl.util;
 
-import java.util.*;
+import myjava.lang.*;
+import myjava.util.*;
 
-public class ArrayComparator implements Comparator {
-	public static final Comparator comparator=new ArrayComparator();
+public class ArrayComparator implements myComparator {
+	public static final myComparator myComparator=new ArrayComparator();
 
 	private ArrayComparator() {}
 
 	public int compare(Object o1, Object o2) {
-		Comparable co1[]=(Comparable[])o1;
-		Comparable co2[]=(Comparable[])o2;
+		myComparable co1[]=(myComparable[])o1;
+		myComparable co2[]=(myComparable[])o2;
 		if(co1.length<co2.length) return -1;
 		else if(co1.length>co2.length) return 1;
 		for(int i=co1.length-1;i>=0;i--) {

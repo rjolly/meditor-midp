@@ -1,11 +1,12 @@
 package jscl.math;
 
-import java.util.*;
+import myjava.lang.*;
+import myjava.util.*;
 import jscl.math.function.*;
 import jscl.text.*;
 import jscl.util.*;
 
-public class Literal implements Comparable {
+public class Literal implements myComparable {
 	final MyMap content=new MyTreeMap();
 	int degree;
 
@@ -19,9 +20,9 @@ public class Literal implements Comparable {
 
 	public Literal divide(Literal literal) throws ArithmeticException {
 		Literal l=valueof(this);
-		Iterator it=literal.content.entrySet().iterator();
+		myIterator it=literal.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Variable v=(Variable)e.getKey();
 			int c=((Integer)e.getValue()).intValue();
 			Object o=content.get(v);
@@ -36,9 +37,9 @@ public class Literal implements Comparable {
 
 	public Literal gcd(Literal literal) {
 		Literal l=newinstance();
-		Iterator it=literal.content.entrySet().iterator();
+		myIterator it=literal.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Variable v=(Variable)e.getKey();
 			int c2=((Integer)e.getValue()).intValue();
 			Object o=content.get(v);
@@ -52,9 +53,9 @@ public class Literal implements Comparable {
 
 	public Literal scm(Literal literal) {
 		Literal l=valueof(this);
-		Iterator it=literal.content.entrySet().iterator();
+		myIterator it=literal.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Variable v=(Variable)e.getKey();
 			int c2=((Integer)e.getValue()).intValue();
 			Object o=content.get(v);
@@ -76,9 +77,9 @@ public class Literal implements Comparable {
 
 	public Generic[] productValue() throws NotProductException {
 		Generic a[]=new Generic[content.size()];
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;i<a.length;i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Variable v=(Variable)e.getKey();
 			int c=((Integer)e.getValue()).intValue();
 			a[i]=v.expressionValue().pow(c);
@@ -90,7 +91,7 @@ public class Literal implements Comparable {
 		int n=content.size();
 		if(n==0) return new Object[] {JSCLInteger.valueOf(1),new Integer(1)};
 		else if(n==1) {
-			Map.Entry e=(Map.Entry)content.entrySet().iterator().next();
+			myMap.Entry e=(myMap.Entry)content.entrySet().myIterator().next();
 			Variable v=(Variable)e.getKey();
 			Integer in=(Integer)e.getValue();
 			return new Object[] {v.expressionValue(),in};
@@ -101,7 +102,7 @@ public class Literal implements Comparable {
 		int n=content.size();
 		if(n==0) throw new NotVariableException();
 		else if(n==1) {
-			Map.Entry e=(Map.Entry)content.entrySet().iterator().next();
+			myMap.Entry e=(myMap.Entry)content.entrySet().myIterator().next();
 			Variable v=(Variable)e.getKey();
 			int c=((Integer)e.getValue()).intValue();
 			if(c==1) return v;
@@ -111,7 +112,7 @@ public class Literal implements Comparable {
 
 	public Variable[] variables() {
 		Variable va[]=new Variable[content.size()];
-		Iterator it=content.keySet().iterator();
+		myIterator it=content.keySet().myIterator();
 		for(int i=0;i<va.length;i++) {
 			va[i]=(Variable)it.next();
 		}
@@ -123,8 +124,8 @@ public class Literal implements Comparable {
 	}
 
 	public int compareTo(Literal literal) {
-		Iterator it1=content.entrySet().iterator(true);
-		Iterator it2=literal.content.entrySet().iterator(true);
+		myIterator it1=content.entrySet().myIterator(true);
+		myIterator it2=literal.content.entrySet().myIterator(true);
 		while(true) {
 			boolean b1=!it1.hasNext();
 			boolean b2=!it2.hasNext();
@@ -132,8 +133,8 @@ public class Literal implements Comparable {
 			else if(b1) return -1;
 			else if(b2) return 1;
 			else {
-				Map.Entry e1=(Map.Entry)it1.next();
-				Map.Entry e2=(Map.Entry)it2.next();
+				myMap.Entry e1=(myMap.Entry)it1.next();
+				myMap.Entry e2=(myMap.Entry)it2.next();
 				Variable v1=(Variable)e1.getKey();
 				Variable v2=(Variable)e2.getKey();
 				int c=v1.compareTo(v2);
@@ -154,9 +155,9 @@ public class Literal implements Comparable {
 	}
 
 	void put(Literal literal) {
-		Iterator it=literal.content.entrySet().iterator();
+		myIterator it=literal.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			put(
 				(Variable)e.getKey(),
 				(Integer)e.getValue()
@@ -186,9 +187,9 @@ public class Literal implements Comparable {
 	public String toString() {
 		StringBuffer buffer=new StringBuffer();
 		if(degree==0) buffer.append("1");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			if(i>0) buffer.append("*");
 			Variable v=(Variable)e.getKey();
 			int c=((Integer)e.getValue()).intValue();
@@ -206,9 +207,9 @@ public class Literal implements Comparable {
 	public String toJava() {
 		StringBuffer buffer=new StringBuffer();
 		if(degree==0) buffer.append("JSCLDouble.valueOf(1)");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			if(i>0) buffer.append(".multiply(");
 			Variable v=(Variable)e.getKey();
 			int c=((Integer)e.getValue()).intValue();
@@ -223,9 +224,9 @@ public class Literal implements Comparable {
 	public String toMathML(Object data) {
 		IndentedBuffer buffer=new IndentedBuffer();
 		if(degree==0) buffer.append("<mn>1</mn>\n");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Variable v=(Variable)e.getKey();
 			int c=((Integer)e.getValue()).intValue();
 			buffer.append(v.toMathML(new Integer(c)));

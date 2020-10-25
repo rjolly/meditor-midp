@@ -1,9 +1,9 @@
 package jscl.math;
 
-import java.util.*;
+import myjava.util.*;
 
 abstract class ComprehensivePolynomial extends MultivariatePolynomial {
-	ComprehensivePolynomial(Variable unknown[], Comparator ordering) {
+	ComprehensivePolynomial(Variable unknown[], myComparator ordering) {
 		super(unknown,ordering);
 	}
 

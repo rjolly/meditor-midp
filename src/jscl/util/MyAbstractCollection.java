@@ -1,5 +1,5 @@
 package jscl.util;
 
-import java.util.*;
+import myjava.util.*;
 
-public abstract class MyAbstractCollection extends AbstractCollection implements MyCollection {}
+public abstract class MyAbstractCollection extends myAbstractCollection implements MyCollection {}

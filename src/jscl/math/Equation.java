@@ -1,6 +1,7 @@
 package jscl.math;
 
 import java.util.*;
+import myjava.util.*;
 import jscl.text.*;
 
 public class Equation extends Generic {

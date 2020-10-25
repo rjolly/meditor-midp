@@ -289,12 +289,12 @@ public class Root extends Function implements Algebraic {
 
 	public int compareTo(Variable variable) {
 		if(this==variable) return 0;
-		int c=comparator.compare(this,variable);
+		int c=myComparator.compare(this,variable);
 		if(c<0) return -1;
 		else if(c>0) return 1;
 		else {
 			Root v=(Root)variable;
-			c=ArrayComparator.comparator.compare(parameter,v.parameter);
+			c=ArrayComparator.myComparator.compare(parameter,v.parameter);
 			if(c<0) return -1;
 			else if(c>0) return 1;
 			else return subscript.compareTo(v.subscript);

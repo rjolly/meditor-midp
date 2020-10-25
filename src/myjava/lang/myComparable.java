@@ -3,7 +3,7 @@
  * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package java.lang;
+package myjava.lang;
 
 /**
  * This interface imposes a total ordering on the objects of each class that
@@ -13,8 +13,8 @@ package java.lang;
  *
  * Lists (and arrays) of objects that implement this interface can be sorted
  * automatically by <tt>Collections.sort</tt> (and <tt>Arrays.sort</tt>).
- * Objects that implement this interface can be used as keys in a sorted map
- * or elements in a sorted set, without the need to specify a comparator.<p>
+ * Objects that implement this interface can be used as keys in a sorted myMap
+ * or elements in a sorted mySet, without the need to specify a myComparator.<p>
  *
  * A class's natural ordering is said to be <i>consistent with equals</i> if
  * and only if <tt>(e1.compareTo((Object)e2)==0)</tt> has the same boolean
@@ -25,20 +25,20 @@ package java.lang;
  * consistent with equals.  This is so because sorted sets (and sorted maps)
  * without explicit comparators behave "strangely" when they are used with
  * elements (or keys) whose natural ordering is inconsistent with equals.  In
- * particular, such a sorted set (or sorted map) violates the general contract
- * for set (or map), which is defined in terms of the <tt>equals</tt>
+ * particular, such a sorted mySet (or sorted myMap) violates the general contract
+ * for mySet (or myMap), which is defined in terms of the <tt>equals</tt>
  * operation.<p>
  *
  * For example, if one adds two keys <tt>a</tt> and <tt>b</tt> such that
  * <tt>(a.equals((Object)b) && a.compareTo((Object)b) != 0)</tt> to a sorted
- * set that does not use an explicit comparator, the second <tt>add</tt>
- * operation returns false (and the size of the sorted set does not increase)
- * because <tt>a</tt> and <tt>b</tt> are equivalent from the sorted set's
+ * mySet that does not use an explicit myComparator, the second <tt>add</tt>
+ * operation returns false (and the size of the sorted mySet does not increase)
+ * because <tt>a</tt> and <tt>b</tt> are equivalent from the sorted mySet's
  * perspective.<p>
  *
- * Virtually all Java core classes that implement comparable have natural
+ * Virtually all myjava core classes that implement myComparable have natural
  * orderings that are consistent with equals.  One exception is
- * <tt>java.math.BigDecimal</tt>, whose natural ordering equates
+ * <tt>myjava.math.BigDecimal</tt>, whose natural ordering equates
  * <tt>BigDecimals</tt> with equal values and different precisions (such as
  * 4.0 and 4.00).<p>
  *
@@ -60,17 +60,17 @@ package java.lang;
  *
  * @author  Josh Bloch
  * @version 1.14, 02/06/02
- * @see java.util.Comparator
- * @see java.util.Collections#sort(java.util.List)
- * @see java.util.Arrays#sort(Object[])
- * @see java.util.SortedSet
- * @see java.util.SortedMap
- * @see java.util.TreeSet
- * @see java.util.TreeMap
+ * @see myjava.util.myComparator
+ * @see myjava.util.Collections#sort(myjava.util.List)
+ * @see myjava.util.Arrays#sort(Object[])
+ * @see myjava.util.SortedSet
+ * @see myjava.util.mySortedMap
+ * @see myjava.util.TreeSet
+ * @see myjava.util.myTreeMap
  * @since 1.2
  */
 
-public interface Comparable {
+public interface myComparable {
     /**
      * Compares this object with the specified object for order.  Returns a
      * negative integer, zero, or a positive integer as this object is less
@@ -91,7 +91,7 @@ public interface Comparable {
      *
      * It is strongly recommended, but <i>not</i> strictly required that
      * <tt>(x.compareTo(y)==0) == (x.equals(y))</tt>.  Generally speaking, any
-     * class that implements the <tt>Comparable</tt> interface and violates
+     * class that implements the <tt>myComparable</tt> interface and violates
      * this condition should clearly indicate this fact.  The recommended
      * language is "Note: this class has a natural ordering that is
      * inconsistent with equals."

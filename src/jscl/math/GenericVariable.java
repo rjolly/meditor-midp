@@ -77,7 +77,7 @@ public abstract class GenericVariable extends Variable {
 
 	public int compareTo(Variable variable) {
 		if(this==variable) return 0;
-		int c=comparator.compare(this,variable);
+		int c=myComparator.compare(this,variable);
 		if(c<0) return -1;
 		else if(c>0) return 1;
 		else {

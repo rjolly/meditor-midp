@@ -1,17 +1,17 @@
 package jscl.math;
 
-import java.util.*;
+import myjava.util.*;
 import jscl.text.*;
 import jscl.util.*;
 
 public abstract class MultivariatePolynomial extends Polynomial {
 	final Variable unknown[];
-	final Comparator ordering;
+	final myComparator ordering;
 	final MySortedMap content=new MyTreeMap();
 	int degree;
 	int sugar;
 
-	MultivariatePolynomial(Variable unknown[], Comparator ordering) {
+	MultivariatePolynomial(Variable unknown[], myComparator ordering) {
 		this.unknown=unknown;
 		this.ordering=ordering;
 	}
@@ -19,9 +19,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 	public Polynomial add(Polynomial polynomial) {
 		MultivariatePolynomial p=(MultivariatePolynomial)valueof(this);
 		MultivariatePolynomial p2=(MultivariatePolynomial)polynomial;
-		Iterator it=p2.content.entrySet().iterator();
+		myIterator it=p2.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				(Monomial)e.getKey(),
 				(Generic)e.getValue()
@@ -34,9 +34,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 	public Polynomial subtract(Polynomial polynomial) {
 		MultivariatePolynomial p=(MultivariatePolynomial)valueof(this);
 		MultivariatePolynomial p2=(MultivariatePolynomial)polynomial;
-		Iterator it=p2.content.entrySet().iterator();
+		myIterator it=p2.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				(Monomial)e.getKey(),
 				((Generic)e.getValue()).negate()
@@ -49,14 +49,14 @@ public abstract class MultivariatePolynomial extends Polynomial {
 	public Polynomial multiply(Polynomial polynomial) {
 		MultivariatePolynomial p=(MultivariatePolynomial)newinstance();
 		MultivariatePolynomial p2=(MultivariatePolynomial)polynomial;
-		Iterator it2=p2.content.entrySet().iterator();
+		myIterator it2=p2.content.entrySet().myIterator();
 		while(it2.hasNext()) {
-			Map.Entry e2=(Map.Entry)it2.next();
+			myMap.Entry e2=(myMap.Entry)it2.next();
 			Monomial m=(Monomial)e2.getKey();
 			Generic a=(Generic)e2.getValue();
-			Iterator it=content.entrySet().iterator();
+			myIterator it=content.entrySet().myIterator();
 			while(it.hasNext()) {
-				Map.Entry e=(Map.Entry)it.next();
+				myMap.Entry e=(myMap.Entry)it.next();
 				p.put(
 					((Monomial)e.getKey()).multiply(m),
 					((Generic)e.getValue()).multiply(a)
@@ -69,9 +69,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public Polynomial multiply(Generic generic) {
 		MultivariatePolynomial p=(MultivariatePolynomial)newinstance();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				(Monomial)e.getKey(),
 				((Generic)e.getValue()).multiply(generic)
@@ -83,9 +83,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public Polynomial multiply(Monomial monomial, Generic generic) {
 		MultivariatePolynomial p=(MultivariatePolynomial)newinstance();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				((Monomial)e.getKey()).multiply(monomial),
 				((Generic)e.getValue()).multiply(generic)
@@ -97,9 +97,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public Polynomial multiply(Monomial monomial) {
 		MultivariatePolynomial p=(MultivariatePolynomial)newinstance();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				((Monomial)e.getKey()).multiply(monomial),
 				(Generic)e.getValue()
@@ -111,9 +111,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public Polynomial divide(Generic generic) throws ArithmeticException {
 		MultivariatePolynomial p=(MultivariatePolynomial)newinstance();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				(Monomial)e.getKey(),
 				((Generic)e.getValue()).divide(generic)
@@ -125,9 +125,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public Polynomial divide(Monomial monomial) throws ArithmeticException {
 		MultivariatePolynomial p=(MultivariatePolynomial)newinstance();
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			p.put(
 				((Monomial)e.getKey()).divide(monomial),
 				(Generic)e.getValue()
@@ -141,9 +141,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 		Polynomial p[]={newinstance(),this};
 		Monomial l=null;
 		loop: while(p[1].signum()!=0) {
-			Iterator it=((MultivariatePolynomial)p[1]).subContent(l,true,false).entrySet().iterator(true);
+			myIterator it=((MultivariatePolynomial)p[1]).subContent(l,true,false).entrySet().myIterator(true);
 			while(it.hasNext()) {
-				Map.Entry e1=(Map.Entry)it.next();
+				myMap.Entry e1=(myMap.Entry)it.next();
 				Monomial m1=(Monomial)e1.getKey();
 				Generic c1=(Generic)e1.getValue();
 				Polynomial q=polynomial;
@@ -167,9 +167,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 		Polynomial p=this;
 		Monomial l=null;
 		loop: while(p.signum()!=0) {
-			Iterator it=((MultivariatePolynomial)p).subContent(l,true,false).entrySet().iterator(true);
+			myIterator it=((MultivariatePolynomial)p).subContent(l,true,false).entrySet().myIterator(true);
 			while(it.hasNext()) {
-				Map.Entry e1=(Map.Entry)it.next();
+				myMap.Entry e1=(myMap.Entry)it.next();
 				Monomial m1=(Monomial)e1.getKey();
 				Generic c1=(Generic)e1.getValue();
 				Polynomial q=polynomial;
@@ -196,7 +196,7 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public Generic gcd() {
 		Generic a=coefficient(JSCLInteger.valueOf(0));
-		for(Iterator it=content.values().iterator(true);it.hasNext();) {
+		for(myIterator it=content.values().myIterator(true);it.hasNext();) {
 			a=a.gcd((Generic)it.next());
 		}
 		return a;
@@ -204,7 +204,7 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public Monomial monomialGcd() {
 		Monomial m=tailMonomial();
-		for(Iterator it=content.keySet().iterator();it.hasNext();) {
+		for(myIterator it=content.keySet().myIterator();it.hasNext();) {
 			m=m.gcd((Monomial)it.next());
 		}
 		return m;
@@ -254,15 +254,15 @@ public abstract class MultivariatePolynomial extends Polynomial {
 	}
 
 	public Generic headCoefficient() {
-		return (Generic)content.values().iterator(true).next();
+		return (Generic)content.values().myIterator(true).next();
 	}
 
 	public Generic tailCoefficient() {
-		return (Generic)content.values().iterator().next();
+		return (Generic)content.values().myIterator().next();
 	}
 
-	Map.Entry headTerm() {
-		return (Map.Entry)content.entrySet().iterator(true).next();
+	myMap.Entry headTerm() {
+		return (myMap.Entry)content.entrySet().myIterator(true).next();
 	}
 
 	public Polynomial s_polynomial(Polynomial polynomial) {
@@ -293,13 +293,13 @@ public abstract class MultivariatePolynomial extends Polynomial {
 		Polynomial p=this;
 		Monomial l=null;
 		loop: while(p.signum()!=0) {
-			Iterator it=((MultivariatePolynomial)p).subContent(l,completely,tail).entrySet().iterator(true);
+			myIterator it=((MultivariatePolynomial)p).subContent(l,completely,tail).entrySet().myIterator(true);
 			while(it.hasNext()) {
-				Map.Entry e1=(Map.Entry)it.next();
+				myMap.Entry e1=(myMap.Entry)it.next();
 				Monomial m1=(Monomial)e1.getKey();
 				Generic c1=(Generic)e1.getValue();
 //				if(l==null?false:m1.compareTo(l)>0) continue;
-				Iterator it2=basis.content.values().iterator();
+				myIterator it2=basis.content.values().myIterator();
 				while(it2.hasNext()) {
 					Polynomial q=(Polynomial)it2.next();
 					Monomial m2=q.headMonomial();
@@ -322,9 +322,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public Generic genericValue() {
 		Generic a=JSCLInteger.valueOf(0);
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Monomial m=(Monomial)e.getKey();
 			Generic a2=uncoefficient((Generic)e.getValue());
 			if(m.degree()>0) a=a.add(a2.multiply(Expression.valueOf(m.literalValue())));
@@ -338,7 +338,7 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public Generic[] elements() {
 		Generic a[]=new Generic[content.size()];
-		Iterator it=content.values().iterator();
+		myIterator it=content.values().myIterator();
 		for(int i=0;it.hasNext();i++) {
 			a[i]=(Generic)it.next();
 		}
@@ -347,8 +347,8 @@ public abstract class MultivariatePolynomial extends Polynomial {
 
 	public int compareTo(Polynomial polynomial) {
 		MultivariatePolynomial p=(MultivariatePolynomial)polynomial;
-		Iterator it1=content.entrySet().iterator(true);
-		Iterator it2=p.content.entrySet().iterator(true);
+		myIterator it1=content.entrySet().myIterator(true);
+		myIterator it2=p.content.entrySet().myIterator(true);
 		while(true) {
 			boolean b1=!it1.hasNext();
 			boolean b2=!it2.hasNext();
@@ -356,8 +356,8 @@ public abstract class MultivariatePolynomial extends Polynomial {
 			else if(b1) return -1;
 			else if(b2) return 1;
 			else {
-				Map.Entry e1=(Map.Entry)it1.next();
-				Map.Entry e2=(Map.Entry)it2.next();
+				myMap.Entry e1=(myMap.Entry)it1.next();
+				myMap.Entry e2=(myMap.Entry)it2.next();
 				Monomial m1=(Monomial)e1.getKey();
 				Monomial m2=(Monomial)e2.getKey();
 				int c=m1.compareTo(m2);
@@ -375,9 +375,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 	}
 
 	void put(Polynomial polynomial) {
-		Iterator it=((MultivariatePolynomial)polynomial).content.entrySet().iterator();
+		myIterator it=((MultivariatePolynomial)polynomial).content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			put(
 				(Monomial)e.getKey(),
 				(Generic)e.getValue()
@@ -386,11 +386,11 @@ public abstract class MultivariatePolynomial extends Polynomial {
 		sugar=polynomial.sugar();
 	}
 
-	public static MultivariatePolynomial valueOf(Generic generic, Variable unknown[], Comparator ordering) {
+	public static MultivariatePolynomial valueOf(Generic generic, Variable unknown[], myComparator ordering) {
 		return valueOf(generic,unknown,ordering,0);
 	}
 
-	public static MultivariatePolynomial valueOf(Generic generic, Variable unknown[], Comparator ordering, int modulo) {
+	public static MultivariatePolynomial valueOf(Generic generic, Variable unknown[], myComparator ordering, int modulo) {
 		MultivariatePolynomial p;
 		switch(modulo) {
 		case 0:
@@ -412,9 +412,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 	void put(Generic generic) {
 		if(generic instanceof Expression) {
 			Expression ex=(Expression)generic;
-			Iterator it=ex.content.entrySet().iterator();
+			myIterator it=ex.content.entrySet().myIterator();
 			while(it.hasNext()) {
-				Map.Entry e=(Map.Entry)it.next();
+				myMap.Entry e=(myMap.Entry)it.next();
 				Literal l=(Literal)e.getKey();
 				JSCLInteger en=(JSCLInteger)e.getValue();
 				Monomial m=monomial(l);
@@ -442,7 +442,7 @@ public abstract class MultivariatePolynomial extends Polynomial {
 //		Object o=content.get(monomial);
 //		if(o!=null) {
 //			Generic a=generic.add((Generic)o);
-		Map.Entry e=content.myGetEntry(monomial);
+		myMap.Entry e=content.myGetEntry(monomial);
 		if(e!=null) {
 			Generic a=generic.add((Generic)e.getValue());
 			if(a.signum()==0) content.remove(monomial);
@@ -459,9 +459,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 	public String toString() {
 		StringBuffer buffer=new StringBuffer();
 		if(signum()==0) buffer.append("0");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Monomial m=(Monomial)e.getKey();
 			Generic a=(Generic)e.getValue();
 			if(a instanceof Expression) a=a.signum()>0?GenericVariable.valueOf(a).expressionValue():GenericVariable.valueOf(a.negate()).expressionValue().negate();
@@ -481,9 +481,9 @@ public abstract class MultivariatePolynomial extends Polynomial {
 		IndentedBuffer buffer=new IndentedBuffer();
 		buffer.append("<mrow>\n");
 		if(signum()==0) buffer.append(1,"<mn>0</mn>\n");
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		for(int i=0;it.hasNext();i++) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			Monomial m=(Monomial)e.getKey();
 			Generic a=(Generic)e.getValue();
 			if(a instanceof Expression) a=a.signum()>0?GenericVariable.valueOf(a).expressionValue():GenericVariable.valueOf(a.negate()).expressionValue().negate();

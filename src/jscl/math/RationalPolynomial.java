@@ -1,18 +1,18 @@
 package jscl.math;
 
-import java.util.*;
+import myjava.util.*;
 import jscl.util.*;
 
 class RationalPolynomial extends MultivariatePolynomial {
-	RationalPolynomial(Variable unknown[], Comparator ordering) {
+	RationalPolynomial(Variable unknown[], myComparator ordering) {
 		super(unknown,ordering);
 	}
 
 	void mutableMultiply(Generic generic) {
 		if(generic.compareTo(JSCLInteger.valueOf(1))==0) return;
-		Iterator it=content.entrySet().iterator();
+		myIterator it=content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			e.setValue(((Generic)e.getValue()).multiply(generic));
 		}
 	}
@@ -26,10 +26,10 @@ class RationalPolynomial extends MultivariatePolynomial {
 
 	public Polynomial s_polynomial(Polynomial polynomial) {
 		RationalPolynomial q=(RationalPolynomial)polynomial;
-		Map.Entry e1=headTerm();
+		myMap.Entry e1=headTerm();
 		Monomial m1=(Monomial)e1.getKey();
 		Generic c1=(Generic)e1.getValue();
-		Map.Entry e2=q.headTerm();
+		myMap.Entry e2=q.headTerm();
 		Monomial m2=(Monomial)e2.getKey();
 		Generic c2=(Generic)e2.getValue();
 		Monomial m=m1.gcd(m2);
@@ -46,15 +46,15 @@ class RationalPolynomial extends MultivariatePolynomial {
 		RationalPolynomial p=(RationalPolynomial)valueof(this);
 		Monomial l=null;
 		loop: while(p.signum()!=0) {
-			Iterator it=p.subContent(l,completely,tail).entrySet().iterator(true);
+			myIterator it=p.subContent(l,completely,tail).entrySet().myIterator(true);
 			while(it.hasNext()) {
-				Map.Entry e1=(Map.Entry)it.next();
+				myMap.Entry e1=(myMap.Entry)it.next();
 				Monomial m1=(Monomial)e1.getKey();
 				Generic c1=(Generic)e1.getValue();
-				Iterator it2=basis.content.values().iterator();
+				myIterator it2=basis.content.values().myIterator();
 				while(it2.hasNext()) {
 					RationalPolynomial q=(RationalPolynomial)it2.next();
-					Map.Entry e2=q.headTerm();
+					myMap.Entry e2=q.headTerm();
 					Monomial m2=(Monomial)e2.getKey();
 					if(m1.multiple(m2)) {
 						Generic c2=(Generic)e2.getValue();
@@ -73,9 +73,9 @@ class RationalPolynomial extends MultivariatePolynomial {
 	}
 
 	void mutableReduce(RationalPolynomial p, Monomial m, Generic c) {
-		Iterator it=p.content.entrySet().iterator();
+		myIterator it=p.content.entrySet().myIterator();
 		while(it.hasNext()) {
-			Map.Entry e=(Map.Entry)it.next();
+			myMap.Entry e=(myMap.Entry)it.next();
 			put(
 				((Monomial)e.getKey()).multiply(m),
 				((Generic)e.getValue()).multiply(c).negate()

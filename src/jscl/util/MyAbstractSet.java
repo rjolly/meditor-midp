@@ -1,5 +1,5 @@
 package jscl.util;
 
-import java.util.*;
+import myjava.util.*;
 
-public abstract class MyAbstractSet extends AbstractSet implements MySet {}
+public abstract class MyAbstractSet extends myAbstractSet implements MySet {}

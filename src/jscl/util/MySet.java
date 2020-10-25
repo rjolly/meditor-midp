@@ -1,5 +1,5 @@
 package jscl.util;
 
-import java.util.*;
+import myjava.util.*;
 
-public interface MySet extends Set, MyCollection {}
+public interface MySet extends mySet, MyCollection {}
